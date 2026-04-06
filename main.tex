@@ -1,0 +1,573 @@
+\documentclass[12pt]{article}
+
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+\usepackage{xeCJK}
+\usepackage{CJKutf8}
+\usepackage{svg}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm ,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+
+% \usepackage{subfigure}
+\usepackage{adjustbox}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{siunitx}
+
+\usepackage{float}
+\usepackage{subfloat}
+
+% ----- paragraph -----
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+% ----- paragraph ----
+
+% \setCJKmainfont{NotoSansCJKtc-DemiLight.otf}
+% \setCJKmainfont{NotoSerifTC-Black.otf}
+% \setCJKmainfont{NotoSerifTC-Regular.otf}
+% \setCJKmainfont{NotoSerifTC-Bold.otf}
+\setCJKmainfont{NotoSerifTC-SemiBold.otf}
+
+\usepackage{indentfirst}
+\setlength\parindent{24pt}
+
+
+\begin{document}
+
+% \maketitle
+
+\begin{titlepage}
+   \begin{center}
+       \vspace*{1cm}
+        \begin{LARGE}  
+            \textbf{
+            \\ 數位電路實驗結報一
+            \\ \
+            \\ --數位加法器--
+            }
+        \end{LARGE}
+       \vspace{0.5cm}
+         \textbf{}
+            
+       \vspace{1.5cm}
+
+       % \begin{CJK}{UTF-8}{bsmi}
+       \textbf{Group 2: 
+         B11303052 蘇盈翰 (Left), B11702091 張容爾 (Right), B10901144 王俊皓}
+        % \end{CJK}
+         
+       \vspace{1.5cm}
+           
+       \text{\today}
+
+       \vspace{0.8cm}
+
+       \includegraphics[width=0.7\textwidth,angle=0]{member.jpg}
+       
+       \vfill
+            
+       \vspace{0.8cm}
+       
+   \end{center}
+\end{titlepage}
+
+\section{Theory}
+\subsection{Ferrofluids}
+
+Ferrofluid is a liquid that becomes strongly magnetized in the presence of a magnetic field. It is made up of tiny magnetic particles (typically iron oxide) suspended in a carrier fluid. These particles are in nanometer scale so that they do not settle due to gravity, remaining evenly dispersed throughout the liquid thanks to surfactants that prevent clumping.
+
+When exposed to a magnetic field, ferrofluids form distinctive spiky patterns along the magnetic field lines fig(\ref{ferrofluid}). This unique property makes them useful in various applications, including sealing rotating shafts in hard drives, cooling loudspeakers, and as a medium for magnetic field visualization in research. They are also studied for potential use in medical applications, such as targeted drug delivery. 
+
+\subsubsection{Physical Properties}
+\begin{itemize}
+    \item Superparamagnetism
+    
+    Under the magnetic field, MNPs align with the field direction. Once the field be removed, the induced magnetic field will decrease to 0. 
+
+    \item Thermal Stability
+    
+    Ferrofluids are thermally stable and can withstand a wide range of temperatures without significant degradation. However, extreme temperatures can cause particle agglomeration, reducing their effectiveness.
+
+    \item Viscosity
+    
+    The viscosity of a ferrofluid changes with the strength of an applied magnetic field. In the presence of a strong field, it can behave more like a solid, increasing its resistance to flow. Without a magnetic field, it behaves like a normal liquid.
+\end{itemize}
+
+
+\begin{figure} [h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{ferrofluid.jpg}
+    \caption{Ferrofluid spiking under the presence of magnetic field vertical to surface}
+    \label{ferrofluid}
+\end{figure}
+
+\subsection{Magnetic Relaxation}
+\subsubsection{Introduction}
+Magnetic relaxation refers to the processes by which the magnetization of a material returns to its equilibrium state after being disturbed.  In the case of $\text{Fe}_3 \text{O}_4$ fluid, the behavior of the nanoparticles under different magnetic field intensity involves complicated phenomenon behind. In short, it may be described in two mechanisms, Brownian relaxation and Néel relaxation. When we applied a magnetic field to $\text{Fe}_3 \text{O}_4$ fluid, in order to return to the equilibrium state, it would go through a two-step response, Néel relaxation occurred first and then Brownian relaxation. 
+
+\begin{itemize}
+    \item Néel Relaxation
+    
+    This regime is especially important in superparamagnetism, which appears in ferrimagnetic nanoparticles. When these particles are small enough, they behave as a single magnetic domain, and their overall magnetization can rapidly change direction. The magnetization of Néel regime is driven by physical rotation(flipping) of the particle itself. Because of the MNPs' anisotropy, there usually exists two stable orientations with $180^{\circ}$ differences in the MNPs and the mean time between two flips is called Néel relaxation time $\tau_{N}$. 
+    \begin{equation}
+         \tau_{N}=\tau_{0}e^{\frac{K_{u}V_{M}}{K_{B}T}}
+    \end{equation}
+    
+    \item Brownian Relaxation
+    
+    The Brownian regime refers to the state in which the magnetization of a MnPs changes due to the physical rotation of the entire particle, rather than internal flipping of the magnetic moment as in the Néel regime. In this case, the change in magnetization occurs because the particle itself undergoes Brownian motion, which is the random movement of particles in a fluid due to thermal fluctuations.
+    In the Brownian regime, the magnetization direction of the particle stays aligned with the particle's body, and the entire NP must rotate to reorient its magnetization. This rotation is influenced by factors like the viscosity of the surrounding medium and the particle's size. The characteristic time for these reorientations is called the Brownian relaxation time.
+
+    \begin{equation}
+        \tau_{B}=\frac{3\eta V_{H}}{K_{B}T}
+        \label{tauB}
+    \end{equation}
+    
+    Both mechanisms occur at the same time when the magnetic field changes, but the faster one (the one with a smaller time constant) dominates the relaxation process (Eq.\ref{tau eff}).
+
+    \begin{equation}
+        \frac{1}{\tau}=\frac{1}{\tau_{N}}+\frac{1}{\tau_{B}}
+        \label{tau eff}
+    \end{equation}
+
+    where $\tau_{0}$, $\tau$, $K_{u}$, $V_{M}$, $V_{H}$, $K_{B}$, $\eta$, $T$ denoted attempt time, effective relaxation time, anisotropy constant, primary volume of the MNPs(magnetic nano particles), hydrodynamic volume of the MNPs, Boltzmann constant, viscosity of the solvent, temperature, respectively. 
+\end{itemize}
+
+\subsection{Magnetization Process}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{images_large_jp9b06790_0001.jpeg}
+    \caption{(a) Time evolution of the applied pulse field. (b) Calculated magnetization of the effective response, $M_{eff}(t)$, in the Néel regime, $M_{N}(t)$, and Brownian regime, $M_{B}(t)$, and the experimental magnetization response, $M_{exp}$. (c) Models of the intra-aggregated particle and dynamics in the Néel and Brownian regimes.Figure obtained from }
+    \label{fig:magnetization process}
+\end{figure}
+
+According to the (fig\ref{fig:magnetization process}), Néel regime occurred more earlier, which lead to smaller relaxation time. In practice, the research shows that the magnitude of Néel and Brownian relaxation time are related to dipole interaction.$\tau_{N}$ decreased as the concentration goes up but $\tau_{B}$ shows the opposite trend. 
+
+\begin{figure} [h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Comparison_Relaxation.png}
+    \caption{Diagram explaining the difference between Brownian Relaxation and Néel relaxation. The egg represents the hydrodynamic volume (Eq.\ref{eq:tau_B}) of the magnetic particle and the yolk represents the magnetic particle itself. Figure obtained from \cite{ApproachModelNanoparticleDynamics}}
+    \label{fig:Diff-Relaxation}
+\end{figure}
+
+\begin{figure} [h]
+    \centering
+    \includegraphics[width=0.45\textwidth]{tau_B_tau_N.png}
+    \caption{Time constants of Néel relaxation ($\tau_N$) and Brownian relaxation ($\tau_B$) as a  function of the sizes of the particle. $\tau$ is the effective time constant contributed by the two mechanisms. $V_c$ is the critical volume of the particle, which is the volume that Néel and Brownian relaxation are comparable. Figure obtained from \cite{Krishnan2016}}
+    \label{fig:relaxation}
+\end{figure}
+
+\subsection{Complex Susceptibility}
+
+\subsubsection{Derivation}
+When the magnetic particles are subjected to an alternating magnetic field with angular frequency $\omega$, its instantaneous magnetization can be written in Eq.\ref{eq:magnetization}, 
+
+\begin{equation}
+    \rm{M(t)}=\chi H_0 e^{i \omega t}
+    % \approx \frac{\mu_0 M}{B}
+    \label{eq:magnetization}
+\end{equation}
+
+\noindent
+and the change of the magnetization is characterized by Eq.\ref{eq:change of magnetization} with $\rm{M_0}=\chi_0 \rm{H_0} e^{i \omega t}$, $\chi_0$ being the DC susceptibility.
+
+\begin{equation}
+    \frac{d\rm{M(t)}}{dt}=-\frac{\rm{M(t)}-\rm{M_0}}{\tau}
+    \label{eq:change of magnetization}
+\end{equation}
+
+% \noindent
+Plugging Eq.\ref{eq:magnetization} into Eq.\ref{eq:change of magnetization} will yield Eq.\ref{eq:complex magnetization}.
+
+\begin{equation}
+    \chi=\chi_0 \frac{1}{1+i \omega \tau}
+    \label{eq:complex magnetization}
+\end{equation}
+
+\noindent
+Then, we rearrange Eq.\ref{eq:complex magnetization} to be Eq.\ref{eq:complex magnetization beauti}. The real and complex parts are commonly denoted by $\chi'$ and $\chi''$, respectively. Alternatively, we can use a phase ($\theta$) to describe the lag with respect to the external field.
+
+\begin{equation}
+    \chi=\chi_0 \frac{1}{1+ (\omega \tau)^2}-i \chi_0 \frac{\omega \tau}{1+(\omega \tau)^2} \\
+    = \chi'-i \chi''=|\chi| e^{i \theta}
+    \label{eq:complex magnetization beauti}
+\end{equation}
+
+\noindent
+Moreover, the oscillation of the external field can be incorporated  into susceptibility (Eq.\ref{eq:phaser susceptibility derivation}), 
+
+\begin{equation}
+    \rm{M(t)}=(\chi e^{i \omega t}) \rm{H}_0 = \boldmath{\chi} \rm{H}_0
+    \label{eq:phaser susceptibility derivation}
+\end{equation}
+
+\noindent
+and denote by $\bm{\chi}$ (Eq.\ref{eq:phaser susceptibiity}).
+
+\begin{equation}
+    \bm{\chi}=(\chi) e^{i \omega t}=(|\chi|e^{i \theta}) e^{i \omega t} =|\chi|e^{i( \omega t+\theta)}
+    \label{eq:phaser susceptibiity}
+\end{equation}
+
+\subsubsection{Peak of Imaginary Part}
+In order to find the frequency that corresponds to the highest imaginary part of the susceptibility ($\chi''$), we differentiate $\chi''$ with respect to $\omega$ and set it to be 0 (Eq.\ref{eq:diff imaginary part}).
+
+\begin{equation}
+    \frac{d \chi''}{d \omega}= \chi_0 \frac{\tau- \omega^2 \tau^3}{\left[ 1+ ( \omega \tau)^2\right]^2}=0
+    \label{eq:diff imaginary part}
+\end{equation}
+
+\noindent Clearly, the peak is at $\omega=1/\tau$. Besides, it accounts for half of total susceptibility. Fig.\ref{fig:frequency response} is the diagram of the normalized susceptibility against angular frequency. 
+
+\begin{figure} [h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{frequency response.png}
+    \caption{ The frequency response of the susceptibility. $\omega_p$ is the angular frequency that has the highest imaginary part ($\chi''$). Figure obtained from \cite{Krishnan2016}}
+    \label{fig:frequency response}
+\end{figure}
+
+\section{Experiment Steps and Log} 
+% \subsection{Steps and Log} 
+\subsection{Ferrofluid: Magnitude \& Phase under 18000 Hz}
+\par First, the equipment measures the magnitude and phase of air under 18000 Hz. For each measurement, we collected over 30 data points to try to minimize the random error. Next, ferrofluid with the lowest concentration of 1.25 mg/ml is placed into the AC magnetization equipment. The phase and magnitude saw a drastic change. Afterward, the 2.5 mg/ml and 8.4 mg/ml ferrofluid were also measured subsequently.
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{459342037_1565237830742365_1422064867420384184_n.jpg}
+    \caption{Labview Screen Shot, the left area is the where we can obtain maximum(peak) amplitude and phase value. The right graph is real part of susceptibility function versus concentration   }
+    \label{fig:Labview}
+\end{figure}
+\par During the analysis under the magnetization program, we alter the vertical boundaries  of the selected region in Labview(Fig.\ref{fig:Labview}).Then we can find the maximum amplitude and phase of the susceptibility function in the selected regions. In the Labview maximum amplitude and phased is used to calculate real part of the susceptibility function, and latter used to curve fit in the right section of the program. However, when we are calculation the susceptibility function amplitude of each concentration, we used average amplitude and phase(see Table\ref{tab:concentration result})  
+
+\par After curve fitting the real part of magnetization (y-axis) with the concentration of ferrofluid (x-axis), we did a measurement on the unknown concentration sample. The measured real-part magnetization of the unknown sample was then mapped onto the fitting curve to estimate the concentration of the solution.
+
+\subsection{Ferrofluid: Susceptibility under Different Frequencies}
+Frequency starts from 11 Hz and goes all the way to 24901 Hz. In the end, the real part and imaginary part of susceptibility are plotted on a curve. And the variation we did is change the magnetization. The magnetization we use are 10mG, 50mG, and 200mG.
+
+
+\subsection{Ink: Measuring the Difference between Pen Gel with and without the Ink}
+\par Like the previous part, we know the susceptibility of ink is quite small and sensitive to exterior noise. Thus, when we measured the susceptibility frequency, the points looked very scattered and did not seem to have much pattern. Essentially, the signal may not be clear due to the small signal-to-noise ratio. As a result, we decided not to fit curves on the ink curves.
+\subsection{YIG:  Susceptibility under Different Frequencies}
+\par Like in 2.2, we set the frequency from 11Hz to 24901 Hz. Yet this time we only used magnetization of  150mG. 
+\section{Experiment \& Data Analysis }
+\subsection{Measure the $\rm{Fe_3O_4}$ concentration from susceptibility}
+The susceptibility of ferrofluid linearly depends on its concentration; hence, we can measure the concentration by susceptibility.
+
+\subsubsection{Data partition}
+
+We separate the data into different regions by detecting the abrupt change of value (Fig.\ref{fig:concentration all}). Furthermore, the orange point represent the maximum value of each segment. Which is the same as the maximum peak we mentioned in section 2.1.
+
+\begin{figure} [h]
+    \centering
+    \includegraphics[width=1\textwidth]{Figure6.pdf}
+    \caption{
+    The magnitude and phase of the samples with known concentration (left panel) and those with unknown concentration (right panel).
+    % \\
+    % Upper panel: The magnitude of each sample. Notice that susceptibility is dimensionless in SI units. \\
+    % Lower panel: The phase of each sample. \\
+    % The error bars are too short to be visible under the scale. \\
+    The names of each plateau (from left to right) are Air1, High, Air2, Middle, Air3, and Low for the known samples and $\rm{Air_{unknown}}$ and Unknown for the unknown sample. }
+    \label{fig:concentration all}
+\end{figure}
+
+
+
+\subsubsection{Value and uncertainty}
+The data points remain stable at room temperature so the mix amplitude of susceptibility ($\chi_{\rm{mix}}$) and phase are the average values of each region, while the uncertainties are the standard deviations of the values of the regions. The values and uncertainties are shown in Table \ref{tab:concentration result}.
+
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.0}
+    \renewcommand{\arraystretch}{1.0}
+        \begin{adjustbox}{max width=1.1\textwidth,center}
+        \begin{tabular}{M{4.0cm}|M{3.0cm}|M{3.0cm}|M{3.0cm}|M{3.0cm}}
+        Name of Region & Average Magnitude & $\Delta$ Magnitude & Average Phase  & $\Delta$ Phase  \\ \hline \hline
+        Air1 & $4.434\times 10^{-5}$ & $ 1.119 \times 10^{-8}$ & $-118.47 $ & $ 8.321\times 10^{-2} $ \\ \hline
+        High (8.40 mg/ml) & $5.337 \times 10^{-5}$ & $1.429 \times 10^{-8}$ & $-130.5 $ & $2.609 \times 10^{-2} $\\ \hline
+        Air2 & $4.433 \times 10^{-5}$ & $3.004 \times 10^{-8}$ & $-118.51 $ & $5.413 \times 10^{-2}$ \\ \hline
+        Middle (2.50 mg/ml) & $4.633 \times 10^{-5}$ & $1.327 \times 10^{-8}$ & $-122.50 $ & $2.215 \times 10^{-2}$ \\ \hline
+        Air3 & $4.434 \times 10^{-5}$ & $3.857 \times 10^{-8}$ & $-118.70$ & $1.081 \times 10^{-2}$ \\ \hline
+        Low (1.25 mg/ml) & $4.529 \times 10^{-5}$ & $1.716 \times 10^{-8}$ & $-120.50$ & $3.416 \times 10^{-2}$ \\ \hline
+        Air unknown & $4.437 \times 10^{-5}$ & $1.069 \times 10^{-8}$ & $-118.28$ & $1.518 \times 10^{-2}$ \\ \hline
+        Sample unknown & $4.943 \times 10^{-5}$ & $9.587 \times 10^{-9}$ & $-127.12$ & $1.165 \times 10^{-2}$ \\
+        \end{tabular}
+        \end{adjustbox}
+    \caption{The magnitude and phase of ferrofluid in room temperature with different concentrations. $\Delta$ is the uncertainty of the value.}
+    \label{tab:concentration result}
+\end{table}
+
+
+
+
+\subsubsection{Air subtraction}
+
+When measuring the susceptibility, both air and sample contribute to the susceptibility. Thus, we have to remove the susceptibility of the air following Eq.\ref{eq:susceptibility subtraction begin} $\sim$ Eq.\ref{eq:susceptibility subtraction end} or in other word find the relative susceptibility compare to air. However, notice that Eq.\ref{eq:susceptibility subtraction end} is just the real part of the susceptibility but to truly subtract air susceptibility from the real part we want to take ratio between the real part( $\rm{Re}[\chi_{\rm{sample}}] $)and the magnitude of air susceptibility($\chi_{air}$). Further more, we need to be careful of the phase we use here. If we simply use the data int Table \ref{tab:concentration result} we would get a negative ratio, and this lack physics sense because ferrofluid conventionally has a positive susceptibility. Hence, we need to add 180 degree to average phase in order to get the correct results. And you can see our results in Table.\ref{tab:Real-part analysis}
+
+
+\begin{align}
+    \label{eq:susceptibility subtraction begin}
+    \bm{\chi}_{\rm{sample}} & =\bm{\chi}_{\rm{mix}}-\bm{\chi}_{\rm{air}} \\
+    & = |\chi_{\rm{mix}}| e^{i(\omega t + \theta_{\rm{mix}})}-|\chi_{\rm{air}}| e^{i(\omega t + \theta_{\rm{air}})} \\
+    & = \underbrace{\left[ |\chi_{\rm{mix}}| e^{i \theta_{\rm{mix}}} - |\chi_{\rm{air}}| e^{i \theta_{\rm{air}}} \right]}_{\chi_{\rm{sample}}} e^{i \omega t} \\
+    \rm{Re}[\chi_{\rm{sample}}] & = |\chi_{\rm{mix}}|\cos{\theta_{\rm{mix}}} -|\chi_{\rm{air}}| \cos{\theta_{\rm{air}}}
+    % & = \underbrace{\left[ \chi_{\rm{mix}} \cos{\theta_{\rm{mix}}-\chi_{\rm{air}} \cos{\theta_{\rm{air}}}} \right]}_{F} \cos{(\omega t)} \\ 
+    % & - \underbrace{\left[ \chi_{\rm{mix}} \sin{\theta_{\rm{mix}}-\chi_{\rm{air}} \sin{\theta_{\rm{air}}}} \right]}_{G} \sin{(\omega t)} \\
+    % & = \sqrt{F^2+G^2} \left[ \frac{F}{\sqrt{F^2+G^2}} \cos{(\omega t)} - \frac{G}{\sqrt{F^2+G^2}} \sin{(\omega t)}\right] \\
+    % & = \underbrace{\sqrt{F^2+G^2}}_{\chi_{\rm{sample}}} \cos{(\omega t + \theta_{\rm{sample}})}
+    \label{eq:susceptibility subtraction end}
+\end{align}
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.0}
+    \renewcommand{\arraystretch}{1.0}
+        \begin{adjustbox}{max width=1.1\textwidth,center}
+        \begin{tabular}{M{4.0cm}|M{4.0cm}|M{4.0cm}}
+        Name of Region & Re_[$\chi_{sample}$] \slash $|\chi_{air}|$ & $\Delta$  Re_[$\chi_{sample}$] \slash $|\chi_{air}|$ \\ \hline \hline
+        High (8.40 mg/ml)  & 0.1512 &  0.0231 \\ \hline
+        Middle (2.50 mg/ml) & 0.04210 & 0.0073\\ \hline
+        Low (1.25 mg/ml) & 0.01902 &  0.00245\\ \hline
+ 
+        \end{tabular}
+        \end{adjustbox}
+    \caption{The real $\Delta$ is the uncertainty of the value.}
+    \label{tab:Real-part analysis}
+\end{table}
+\subsubsection{Fitting and concentration measurement}
+
+Finally, we use the weighted least square to obtain the regression lines and measure the unknown $\rm{Fe_3O_4}$ concentration, the values are shown in Fig.\ref{fig:unknown} below.
+ 
+
+\begin{figure} [h]
+    \centering
+    \includegraphics[width=1\textwidth]{Unknown_sample.pdf}
+    \caption{The fitting results. The values of the unknown sample are shown in parentheses.}
+    \label{fig:unknown}
+\end{figure}
+
+\subsubsection{Uncertainty estimation}
+
+Because of Eq.\ref{eq:susceptibility subtraction end}, the uncertainty of each sample is Eq.\ref{eq:real part unc}.
+
+% \begin{align}
+    % \delta \rm{Re}\left[ \chi_{\rm{sample}} \right]
+    % & = \frac{\partial \left[ \sqrt{F^2+G^2} \cos{(\omega t + \theta_{\rm{sample}})} \right]}{\partial F} \delta F \\
+    % & + \frac{\partial \left[ \sqrt{F^2+G^2} \cos{(\omega t + \theta_{\rm{sample}})} \right]}{\partial G} \delta G \\
+    % & - \frac{\partial \left[ \sqrt{F^2+G^2} \cos{(\omega t + \theta_{\rm{sample}})} \right]}{\partial \cos{\omega t + \theta_{\rm{sample}}}} \delta \cos{(\omega t + \theta_{\rm{sample}})} \\
+    % & = \frac{F \delta F + G \delta G}{\sqrt{F^2+G^2}} \cos{(\omega t + \theta_{\rm{sample}})} \\ 
+    % & - \sqrt{F^2+G^2} \sin{(\omega t +\theta_{\rm{sample}})} \delta \theta_{\rm{sample}} \\
+    % \delta \rm{Re}\left[ \chi_{\rm{sample}} \right] &= \delta |\chi_{\rm{mix}}| \cos{\theta_{\rm{mix}}} + |\chi_{\rm{mix}}| \sin{\theta_{\rm{mix}}} \delta \theta_{\rm{mix}} \\
+    % & + \delta |\chi_{\rm{air}}| \cos{\theta_{\rm{air}}} + |\chi_{\rm{air}}| \sin{\theta_{\rm{air}}} \delta \theta_{\rm{air}}
+%     \delta \rm{Re}\left[ \chi_{\rm{sample}} \right] &= \rm{Re}\left[ \chi_{\rm{sample}} \right] \sqrt{\frac{\delta |\chi_{\rm{mix}}|}{\chi_{\rm{mix}}} + \tan{\theta_{\rm{mix}}} \delta \theta_{\rm{mix}}
+%     + \delta |\chi_{\rm{air}}| \cos{\theta_{\rm{air}}} + |\chi_{\rm{air}}| \sin{\theta_{\rm{air}}} \delta \theta_{\rm{air}}}
+% \end{align}
+
+\begin{equation}
+    \frac{\delta \rm{Re}\left[ \chi_{\rm{sample}} \right]}{\rm{Re}\left[ \chi_{\rm{sample}} \right]} = \sqrt{\left(\frac{\delta |\chi_{\rm{mix}}|}{\chi_{\rm{mix}}}\right)^2 + (\tan{\theta_{\rm{mix}}} \delta \theta_{\rm{mix}})^2
+    + \left(\frac{\delta |\chi_{\rm{air}}|}{|\chi_{\rm{air}}|}\right)^2 + (\tan{\theta_{\rm{air}}} \delta \theta_{\rm{air}})^2}
+    \label{eq:real part unc}
+\end{equation}
+
+\noindent
+As we adopt the weighted least square, the concentration uncertainty is Eq.\ref{eq:unc_concentration}.
+
+\begin{equation}
+    \Delta  = \sum w \sum w x^2-\left( \sum w x \right)^2
+\end{equation}
+
+\begin{equation}
+    \delta_{\rm{slope}} =\sqrt{\frac{\sum w x^2}{\Delta}}
+\end{equation}
+
+\begin{equation}
+    \delta_{\rm{intercept}} =\sqrt{\frac{\sum w}{\Delta}}
+\end{equation}
+
+\begin{equation}
+    \frac{\delta [\rm{Fe_3O_4}]}{[\rm{Fe_3O_4}]}=\sqrt{\left(\frac{\delta Re[\chi_{\rm{sample}}]}{Re[{\chi_{\rm{sample}}]-\rm{intercept}} \right)^2+\left(\frac{\delta_{\rm{intercept}}}{Re[\chi_{\rm{sample}}]-\rm{intercept}} \right)^2 +\left(\frac{\delta_{\rm{slope}}}{\rm{slope}} \right)^2}
+    \label{eq:unc_concentration}
+\end{equation}
+
+% with 
+% $\delta G$, $\delta F$ and $\delta \theta_{\rm{mix}}$ e
+
+% \begin{align}
+%     \delta G & = \delta \left[ \chi_{\rm{mix}} \sin{\theta_{\rm{mix}}-\chi_{\rm{air}} \sin{\theta_{\rm{air}}}} \right] \\
+%     & = \delta \chi_{\rm{mix}} (\sin{\theta_{\rm{mix}}}) + \chi_{\rm{mix}} (\cos{\theta_{\rm{mix}}}) \delta \theta_{\rm{mix}} \\
+%     & - \delta \chi_{\rm{air}} (\sin{\theta_{\rm{air}}}) + \chi_{\rm{air}} (\cos{\theta_{\rm{air}}}) \delta \theta_{\rm{air}} \\
+%     \delta F & = \delta \left[ \chi_{\rm{mix}} \cos{\theta_{\rm{mix}}-\chi_{\rm{air}} \cos{\theta_{\rm{air}}}} \right] \\
+%     & = \delta \chi_{\rm{mix}} (\cos{\theta_{\rm{mix}}}) - \chi_{\rm{mix}} (\sin{\theta_{\rm{mix}}}) \delta \theta_{\rm{mix}} \\
+%     & - \delta \chi_{\rm{air}} (\cos{\theta_{\rm{air}}}) + \chi_{\rm{air}} (\sin{\theta_{\rm{air}}}) \delta \theta_{\rm{air}} \\
+%     \delta \theta_{\rm{sample}} & =\frac{F\delta G-G \delta F}{G^2+F^2}
+% \end{align}
+    
+% \end{itemize}
+
+% \begin{figure}[h]
+%     \centering
+%     \begin{subfigure}[b]{0.5\textwidth}
+%         \centering
+%         \includegraphics[width=0.95\linewidth]{concentration.pdf} 
+%         \caption{The names of each region are air1, High, air2, Middle, air3 and Low (from left to right).}
+%         \label{fig:concentration}
+%     \end{subfigure}
+%     \hfill
+%     \begin{subfigure}[b]{0.4\textwidth}
+%         \centering
+%         \includegraphics[width=0.99\linewidth]{concentration_unknown.pdf} 
+%         \caption{The names of each region are air1, High, air2, Middle, air3 and Low (from left to right).}
+%         \label{fig:concentration unknown}
+%     \end{subfigure}
+%     \caption{Upper panel: The magnitude of each sample. Notice that susceptibility is dimensionless in SI units. Lower panel: The phase of each sample. The error bars are too short to be visible under the scale. }
+%     \label{fig:numerical_solution_van_der_PAUW_dist}
+% \end{figure}
+
+\subsection{Ink Susceptibility}
+
+In order to measure the ink susceptibility, we measure the susceptibility of pen gel with and without the ink. We employ the same method used in $\rm{Fe_3O_4}$ concentration measurement at room temperature. Table \ref{tab:ink data} is the value and uncertainty.
+
+\subsubsection{Value and uncertainty}
+
+\begin{figure} [h]
+    \centering
+    \includegraphics[width=1\textwidth]{Figure9.pdf}
+    \caption{Susceptibility of pen gel that has ink and that doesn't have ink. The shaded regions cover 1 standard deviation. The name of each region is Air1, Ink, Air2, and No Ink (from left to right)}
+    \label{fig:ink}
+\end{figure}
+ 
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.0}
+    \begin{adjustbox}{max width=1.1\textwidth,center}
+        \begin{tabular}{M{4.0cm}|M{4.0cm}|M{3.0cm}|M{2.0cm}|M{2.0cm}}
+        Name of Region & Average Magnitude & $\Delta$ Magnitude & Phase ($\degree$) & $\Delta$ Phase ($\degree$) \\ \hline \hline
+        Air1 & $4.741 \times 10^{-5}, $ & $3.02\times 10^{-8}$ & -119.34 \degree & 0.053 \degree \\ \hline
+        Ink & $4.702 \times 10^{-5}$ & $7.08\times 10^{-8}$ & -118.67 \degree & 0.073\degree \\ \hline 
+        Air2 & $4.742 \times 10^{-5}$ & $3.17 \times 10^{-8}$ & -119.283 \degree & 0.052\degree \\ \hline
+        No Ink & $4.734 \times 10^{-5}$ & $3.84 \times 10^{-8}$ & -119.19\degree & 0.057  \degree \\
+        \end{tabular}
+    \end{adjustbox}
+    \caption{The magnitude and phase of pen gel with and without ink. $\Delta$ is the uncertainty of the value.}
+    \label{tab:ink data}
+\end{table}
+
+\subsubsection{Result}
+We calculate the real part of the susceptibility magnitude($\chi_{sample}$) from eq.\ref{eq:susceptibility subtraction end} to subtract the air susceptibility.
+
+The real part of the susceptibility magnitude ratio for pen gel with ink is $\bm{-1.4259\pm 0.2693\times 10^{-2}}$ and without ink is $\bm{-1.0556 \pm 1.7119 \times 10^{-3}}$. It suggests that the ink contributes to little total susceptibility and might be a little diamagnetic. The reason we can see this is because in section 3.13 we calculated that the relative susceptibility of ferrorfluids is around the magnitude of $10^{0}$. With pen ink, however, is $10^{3}$ degree and ratio less than zero. As for without ink, the real part susceptibility magnitude ratio is another tenth of a degree less than with ink and has an uncertainty as big as it's ratio. This indicates that the data without ink is simply just like air.
+ 
+\subsection{Measuring susceptibility at different frequencies}
+
+\subsubsection{Method}
+Data of real part and imaginary part susceptibility can be directly obtained under the measurement and calculation of the program. The real part and imaginary part were then fitted with Eq.\ref{eq:complex magnetization beauti}. The time constant $\tau$ is obtained in the process.
+\par Our estimation error is calculated by observing the mean square error of the fitting curve. We observe the mean square error as we vary the fitting time constant, and set a threshold of fitting quality for obtaining the uncertainty region.
+
+\subsubsection{Relaxation time constant $\tau_B$ of room temperature ferrofluid}
+\begin{figure} [h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{10mG.pdf
+}
+
+    \caption{Susceptibility of ferrofluids under different frequencies, the exterior magnetic field is fixed at 10 mG.}
+    \label{fig:Ferrofluid 10mG Freq Response}
+\end{figure}
+\par The data points and fitted lines are plotted in Fig.\ref{fig:Ferrofluid 200mG Freq Response}. The data at low frequencies seem very messy and severely affected by noises. As a consequence, we remove data points under 500 Hz. The curve fits relatively well on the rest of the points. Time constant $\tau$ from the real part is $\bm{8.29\pm 0.002 (\mu s) }$, while time constant from imaginary part is $\bm{1.98 \pm 0.011(\mu s)}$. Moreover, we've fitted plot under magnetic field of 200 mG and 50 mG. Yet, despite the graph seems okay on paper, we aren't able to fit it with eq.\ref{eq:complex magnetization beauti}. We think its because the large jump after 10kHz that causes this insufficient fit. We've tried to limit the amplitude of the susceptibility, but it just couldn't work. And the reason we think this happened is because the temperature of the sample is just not stable under experiment. Next time we could try control or sample at near 20 degree Celsius. 
+\begin{figure} [h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{200mG.pdf}
+
+
+    \caption{Susceptibility of ferrofluids under different frequencies, the exterior magnetic field is fixed at 200 mG and 50 mG.}
+    \label{fig:Ferrofluid 200mG Freq Response}
+\end{figure}
+
+\subsubsection{Comparing with theoretical values on textbook}
+
+Given that the radius of the magnetic particle is 58 (nm), the viscosity is 0.00102 $\rm{N/m^2}$ for 20 \degree C and 0.00178 for 0 \degree C ( data obtained from this \href{https://www.engineersedge.com/physics/water__density_viscosity_specific_weight_13146.htm}{link}), and the room temperature is 24.2 \degree C (from the thermometer) and 0 \degree C for the cold sample, we can calculate the theoretical $\tau$.
+
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.0}
+    \begin{adjustbox}{max width=1.1\textwidth,center}
+        \begin{tabular}{M{3.0cm}|M{6.0cm}|M{4.0cm}}
+          & room temperature ($20 \degree C$) \\ \hline
+         $\tau_{\rm{theory}}$ & $6.063  $($ \mu s$) \\ \hline
+         $\tau_{\rm{exp, real}}$ & $8.29 \pm 0.61$ ($ \mu s$) \\ \hline
+         $\tau_{\rm{exp, imaginary}}$ & $1.98 \pm 0.21$ ($ \mu s$) \\
+        \end{tabular}
+    \end{adjustbox}
+    \caption{The theoretical values of time constant based on equation on the lab book and the results from the experiment for 10mG sample.}
+    \label{tab:calc tau B}
+\end{table}
+
+The possible inaccuracies may come from hydrodynamic volume. We assume hydrodynamic volume is exactly the volume of magnetic particles, but actually, some water molecules cling onto magnetic particles due to polarity. The hydrodynamic volume is severely underestimated in our calculations. Also, hydrodynamic volume changes with temperature. The kinetic energy of all the water molecules varies, affecting the amount of water clinging on. Therefore, the time constant $\tau$ is not directly inversely proportional to the temperature. 
+
+\subsubsection{Yttrium iron garnet (YIG) sample}
+
+\begin{figure} [h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{YIG.pdf}
+
+    \caption{Susceptibility of YIG sample under different frequencies, the exterior magnetic field is fixed at 150 mG.}
+    \label{fig:YIG 200mG Freq Response}
+\end{figure}
+
+\par The data points and fitted curves are in
+Fig.\ref{fig:YIG 200mG Freq Response}. It is apparent in the diagram that the peak of imaginary part susceptibility does not correspond to the point where the real part and imaginary part are the same. Also, $\bm{\tau = 70.2 \pm 13 (\mu s)} $ is based on the real part fitting curve, and $\bm{10.5 \pm 0.8 (\mu s)} $ is based on the imaginary part curve. The two constants are over an order of magnitude apart, and their error range does not overlap with each other. The result tells us that YIG, which is a ferrimagnetic material, is not compatible with the model of ferrofluids. YIG is not isotropic and its magnetic field comes from the different spins of iron atoms. Its relaxation mechanism is related to spin-lattice interactions rather than Neel's or Brownian relaxation.
+
+
+
+\section{Questions}
+
+\subsection{請比較AC磁化率跟DC磁化率的差別}
+
+AC magnetic susceptibility and DC magnetic susceptibility are two ways to measure how a material responds to an external magnetic field, but they operate under different conditions and reveal different magnetic behaviors:
+
+\begin{itemize}
+    \item Frequency of the Magnetic Field:
+    
+    DC magnetic susceptibility is measured in the presence of a steady, unchanging magnetic field (direct current, or DC field). It reflects the material's magnetic response to a constant magnetic field.
+    
+    AC magnetic susceptibility is measured when an alternating magnetic field (alternating current, or AC field) is applied. The field changes direction periodically, allowing researchers to study the dynamic response of the material over time.
+
+    \item Measurement of Different Magnetic Properties:
+    
+    DC susceptibility measures the equilibrium response of a material, showing how much it is magnetized when exposed to a constant magnetic field. It gives insights into the material’s overall magnetic moment and bulk properties.
+    
+    AC susceptibility gives more information about the dynamic processes in the material, such as the motion of domain walls, relaxation times (Néel or Brownian relaxation in nanoparticles), and other frequency-dependent magnetic behaviors. AC measurements are particularly useful in studying magnetic systems with time-dependent properties.
+
+    \item Applications:
+    
+    DC measurements are simpler and are often used for basic magnetic characterizations, like identifying whether a material is paramagnetic, ferromagnetic, or diamagnetic.
+    
+    AC measurements are more sophisticated and are commonly used in research areas that involve magnetic relaxation (e.g., magnetic nanoparticles), studying the frequency response of materials, and detecting magnetic phase transitions.
+\end{itemize}
+
+In summary, DC magnetic susceptibility is a static measure of how a material reacts to a constant magnetic field, while AC magnetic susceptibility provides insights into the material's response to a time-varying field, offering more detailed information about dynamic magnetic processes.
+
+\section{Summary} 
+In this experiment, we measure the susceptibilities of $\rm{Fe_3O_4}$ ferrofluid with different concentration and temperature. Then, we use the susceptibility to derive the concentration of the unknown sample. The concentrations of the unknown sample in different temperature are consistent, approximately \textbf{4.8 mg/ml}. Additionally, we investigate the susceptibility of ink and find its susceptibility is weak. 
+\par In addition, we measured the samples under different frequencies. Though susceptibility data get severely distorted at lower frequency regions, the region over 500 Hz fits relatively well with equation of magnetic particles in fluid. The time constant for iced ferrofluid is way larger than that under room temperature, indicating relaxation happens slower at lower temperatures. Finally, when doing the YIG sample, the curves cannot match the equation of magnetic particles in fluid. This exemplifies that YIG is not isotropic, and its relaxation mechanism is different from ferrofluids.
+
+\bibliographystyle{plain}
+\bibliography{sample}
+
+\end{document} 
