@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2025.4.7)  6 APR 2026 17:54
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2025.4.7)  6 APR 2026 18:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -902,13 +902,13 @@ LaTeX Font Warning: Font shape `TU/NotoSerifTC-SemiBold.otf(0)/b/n' undefined
 (Font)              using `TU/NotoSerifTC-SemiBold.otf(0)/m/n' instead on input
  line 67.
 
-File: member.jpg Graphic file (type bmp)
-<member.jpg>
+File: Member.jpg Graphic file (type bmp)
+<Member.jpg>
 [1
 
 ]
 
-LaTeX Warning: Reference `ferrofluid' on page 1 undefined on input line 99.
+LaTeX Warning: Reference `ferrofluid' on page 1 undefined on input line 98.
 
 File: ferrofluid.jpg Graphic file (type bmp)
 <ferrofluid.jpg>
@@ -917,30 +917,30 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [1]
 
-LaTeX Warning: Reference `tau eff' on page 2 undefined on input line 146.
+LaTeX Warning: Reference `tau eff' on page 2 undefined on input line 145.
 
 File: images_large_jp9b06790_0001.jpeg Graphic file (type bmp)
 <images_large_jp9b06790_0001.jpeg>
 [2]
 
 LaTeX Warning: Reference `fig:magnetization process' on page 3 undefined on inp
-ut line 164.
+ut line 163.
 
 File: Comparison_Relaxation.png Graphic file (type bmp)
 <Comparison_Relaxation.png>
 
-LaTeX Warning: Reference `eq:tau_B' on page 3 undefined on input line 169.
+LaTeX Warning: Reference `eq:tau_B' on page 3 undefined on input line 168.
 
 
 LaTeX Warning: Citation `ApproachModelNanoparticleDynamics' on page 3 undefined
- on input line 169.
+ on input line 168.
 
 
-LaTeX Warning: Reference `eq:tau_B' on page 3 undefined on input line 169.
+LaTeX Warning: Reference `eq:tau_B' on page 3 undefined on input line 168.
 
 
 LaTeX Warning: Citation `ApproachModelNanoparticleDynamics' on page 3 undefined
- on input line 169.
+ on input line 168.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -948,95 +948,95 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: tau_B_tau_N.png Graphic file (type bmp)
 <tau_B_tau_N.png>
 
-LaTeX Warning: Citation `Krishnan2016' on page 3 undefined on input line 176.
+LaTeX Warning: Citation `Krishnan2016' on page 3 undefined on input line 175.
 
 
-LaTeX Warning: Citation `Krishnan2016' on page 3 undefined on input line 176.
+LaTeX Warning: Citation `Krishnan2016' on page 3 undefined on input line 175.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: Reference `eq:magnetization' on page 3 undefined on input line 1
-83.
+82.
 
 
 LaTeX Warning: Reference `eq:change of magnetization' on page 3 undefined on in
-put line 192.
+put line 191.
 
 
-LaTeX Warning: Reference `eq:magnetization' on page 3 undefined on input line 2
-00.
+LaTeX Warning: Reference `eq:magnetization' on page 3 undefined on input line 1
+99.
 
 
 LaTeX Warning: Reference `eq:change of magnetization' on page 3 undefined on in
-put line 200.
+put line 199.
 
 
 LaTeX Warning: Reference `eq:complex magnetization' on page 3 undefined on inpu
-t line 200.
+t line 199.
 
 [3]
 
 LaTeX Warning: Reference `eq:complex magnetization' on page 4 undefined on inpu
-t line 208.
+t line 207.
 
 
 LaTeX Warning: Reference `eq:complex magnetization beauti' on page 4 undefined 
-on input line 208.
+on input line 207.
 
 
 LaTeX Warning: Reference `eq:phaser susceptibility derivation' on page 4 undefi
-ned on input line 217.
+ned on input line 216.
 
 
-LaTeX Font Warning: Command \boldmath invalid in math mode on input line 220.
+LaTeX Font Warning: Command \boldmath invalid in math mode on input line 219.
 
 
-LaTeX Font Warning: Command \mathversion invalid in math mode on input line 220
+LaTeX Font Warning: Command \mathversion invalid in math mode on input line 219
 .
 
-LaTeX Font Info:    Calculating math sizes for size <> on input line 222.
+LaTeX Font Info:    Calculating math sizes for size <> on input line 221.
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <> not available
-(Font)              size <5> substituted on input line 222.
+(Font)              size <5> substituted on input line 221.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.7> not available
-(Font)              size <5> substituted on input line 222.
+(Font)              size <5> substituted on input line 221.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.5> not available
-(Font)              size <5> substituted on input line 222.
+(Font)              size <5> substituted on input line 221.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <> not available
-(Font)              size <5> substituted on input line 222.
+(Font)              size <5> substituted on input line 221.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 222.
+(Font)              size <5> substituted on input line 221.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 222.
+(Font)              size <5> substituted on input line 221.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <> not available
-(Font)              size <5> substituted on input line 222.
+(Font)              size <5> substituted on input line 221.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 222.
+(Font)              size <5> substituted on input line 221.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 222.
+(Font)              size <5> substituted on input line 221.
 
-c:/Users/user/Desktop/IC Design/main.tex:225: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:224: Undefined control sequence.
 <recently read> \bm 
                     
-l.225 and denote by $\bm
+l.224 and denote by $\bm
                         {\chi}$ (Eq.\ref{eq:phaser susceptibiity}).
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1046,10 +1046,10 @@ and I'll forget about whatever was undefined.
 
 
 LaTeX Warning: Reference `eq:phaser susceptibiity' on page 4 undefined on input
- line 225.
+ line 224.
 
-c:/Users/user/Desktop/IC Design/main.tex:228: Undefined control sequence.
-l.228     \bm
+c:/Users/user/Desktop/IC Design/main.tex:227: Undefined control sequence.
+l.227     \bm
              {\chi}=(\chi) e^{i \omega t}=(|\chi|e^{i \theta}) e^{i \omega t...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1059,19 +1059,19 @@ and I'll forget about whatever was undefined.
 
 
 LaTeX Warning: Reference `eq:diff imaginary part' on page 4 undefined on input 
-line 233.
+line 232.
 
 
 LaTeX Warning: Reference `fig:frequency response' on page 4 undefined on input 
-line 240.
+line 239.
 
 File: frequency response.png Graphic file (type bmp)
 <frequency response.png>
 
-LaTeX Warning: Citation `Krishnan2016' on page 4 undefined on input line 245.
+LaTeX Warning: Citation `Krishnan2016' on page 4 undefined on input line 244.
 
 
-LaTeX Warning: Citation `Krishnan2016' on page 4 undefined on input line 245.
+LaTeX Warning: Citation `Krishnan2016' on page 4 undefined on input line 244.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1081,68 +1081,68 @@ mp)
 <459342037_1565237830742365_1422064867420384184_n.jpg>
 [4]
 
-LaTeX Warning: Reference `fig:Labview' on page 5 undefined on input line 259.
+LaTeX Warning: Reference `fig:Labview' on page 5 undefined on input line 258.
 
 
 LaTeX Warning: Reference `tab:concentration result' on page 5 undefined on inpu
-t line 259.
+t line 258.
 
 [5]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 272.
+(hyperref)                removing `math shift' on input line 271.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 272.
+(hyperref)                removing `subscript' on input line 271.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 272.
+(hyperref)                removing `subscript' on input line 271.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 272.
+(hyperref)                removing `math shift' on input line 271.
 
 [6]
 
 LaTeX Warning: Reference `fig:concentration all' on page 7 undefined on input l
-ine 277.
+ine 276.
 
 File: Figure6.pdf Graphic file (type pdf)
 <use Figure6.pdf>
 
 LaTeX Warning: Reference `tab:concentration result' on page 7 undefined on inpu
-t line 295.
+t line 294.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: Reference `eq:susceptibility subtraction begin' on page 7 undefi
-ned on input line 323.
+ned on input line 322.
 
 
 LaTeX Warning: Reference `eq:susceptibility subtraction end' on page 7 undefine
-d on input line 323.
+d on input line 322.
 
 
 LaTeX Warning: Reference `eq:susceptibility subtraction end' on page 7 undefine
-d on input line 323.
+d on input line 322.
 
 
 LaTeX Warning: Reference `tab:concentration result' on page 7 undefined on inpu
-t line 323.
+t line 322.
 
 
 LaTeX Warning: Reference `tab:Real-part analysis' on page 7 undefined on input 
-line 323.
+line 322.
 
 [7]
-c:/Users/user/Desktop/IC Design/main.tex:337: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:336: Undefined control sequence.
 <argument> ...sceptibility subtraction begin} \bm 
                                                   {\chi }_{\rm {sample}} & =...
-l.337 \end{align}
+l.336 \end{align}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1150,10 +1150,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:337: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:336: Undefined control sequence.
 <argument> ...} \bm {\chi }_{\rm {sample}} & =\bm 
                                                   {\chi }_{\rm {mix}}-\bm {\...
-l.337 \end{align}
+l.336 \end{align}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1161,10 +1161,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:337: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:336: Undefined control sequence.
 <argument> ...le}} & =\bm {\chi }_{\rm {mix}}-\bm 
                                                   {\chi }_{\rm {air}} \\ & =...
-l.337 \end{align}
+l.336 \end{align}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1172,10 +1172,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:337: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:336: Undefined control sequence.
 <argument> ...sceptibility subtraction begin} \bm 
                                                   {\chi }_{\rm {sample}} & =...
-l.337 \end{align}
+l.336 \end{align}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1183,10 +1183,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:337: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:336: Undefined control sequence.
 <argument> ...} \bm {\chi }_{\rm {sample}} & =\bm 
                                                   {\chi }_{\rm {mix}}-\bm {\...
-l.337 \end{align}
+l.336 \end{align}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1194,10 +1194,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:337: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:336: Undefined control sequence.
 <argument> ...le}} & =\bm {\chi }_{\rm {mix}}-\bm 
                                                   {\chi }_{\rm {air}} \\ & =...
-l.337 \end{align}
+l.336 \end{align}
                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1205,40 +1205,40 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:344: Missing $ inserted.
+c:/Users/user/Desktop/IC Design/main.tex:343: Missing $ inserted.
 <inserted text> 
                 $
-l.344         Name of Region & Re_
+l.343         Name of Region & Re_
                                   [$\chi_{sample}$] \slash $|\chi_{air}|$ & ...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-c:/Users/user/Desktop/IC Design/main.tex:344: Missing $ inserted.
+c:/Users/user/Desktop/IC Design/main.tex:343: Missing $ inserted.
 <inserted text> 
                 $
-l.344         Name of Region & Re_[$\chi
+l.343         Name of Region & Re_[$\chi
                                         _{sample}$] \slash $|\chi_{air}|$ & ...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-c:/Users/user/Desktop/IC Design/main.tex:344: Missing $ inserted.
+c:/Users/user/Desktop/IC Design/main.tex:343: Missing $ inserted.
 <inserted text> 
                 $
-l.344 ...}$] \slash $|\chi_{air}|$ & $\Delta$  Re_
+l.343 ...}$] \slash $|\chi_{air}|$ & $\Delta$  Re_
                                                   [$\chi_{sample}$] \slash $...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-c:/Users/user/Desktop/IC Design/main.tex:344: Missing $ inserted.
+c:/Users/user/Desktop/IC Design/main.tex:343: Missing $ inserted.
 <inserted text> 
                 $
-l.344 ...lash $|\chi_{air}|$ & $\Delta$  Re_[$\chi
+l.343 ...lash $|\chi_{air}|$ & $\Delta$  Re_[$\chi
                                                   _{sample}$] \slash $|\chi_...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-LaTeX Warning: Reference `fig:unknown' on page 8 undefined on input line 356.
+LaTeX Warning: Reference `fig:unknown' on page 8 undefined on input line 355.
 
 File: Unknown_sample.pdf Graphic file (type pdf)
 <use Unknown_sample.pdf>
@@ -1247,21 +1247,21 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: Reference `eq:susceptibility subtraction end' on page 8 undefine
-d on input line 368.
+d on input line 367.
 
 
 LaTeX Warning: Reference `eq:real part unc' on page 8 undefined on input line 3
-68.
+67.
 
 
 LaTeX Warning: Reference `eq:unc_concentration' on page 8 undefined on input li
-ne 390.
+ne 389.
 
 [8]
-c:/Users/user/Desktop/IC Design/main.tex:405: Missing } inserted.
+c:/Users/user/Desktop/IC Design/main.tex:404: Missing } inserted.
 <inserted text> 
                 }
-l.405 ...elta_{\rm{slope}}}{\rm{slope}} \right)^2}
+l.404 ...elta_{\rm{slope}}}{\rm{slope}} \right)^2}
                                                   
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1270,22 +1270,22 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Overfull \hbox (5.59332pt too wide) detected at line 407
+Overfull \hbox (5.59332pt too wide) detected at line 406
 [][][][] \OT1/cmr/m/n/12 = []
  []
 
 
-LaTeX Warning: Reference `tab:ink data' on page 9 undefined on input line 445.
+LaTeX Warning: Reference `tab:ink data' on page 9 undefined on input line 444.
 
 File: Figure9.pdf Graphic file (type pdf)
 <use Figure9.pdf>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-c:/Users/user/Desktop/IC Design/main.tex:461: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:460: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.461 ...de & $\Delta$ Magnitude & Phase ($\degree
+l.460 ...de & $\Delta$ Magnitude & Phase ($\degree
                                                   $) & $\Delta$ Phase ($\deg...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1293,10 +1293,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:461: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:460: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.461 ...se ($\degree$) & $\Delta$ Phase ($\degree
+l.460 ...se ($\degree$) & $\Delta$ Phase ($\degree
                                                   $) \\ \hline \hline
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1304,10 +1304,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:462: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:461: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.462 ... & $3.02\times 10^{-8}$ & -119.34 \degree
+l.461 ... & $3.02\times 10^{-8}$ & -119.34 \degree
                                                    & 0.053 \degree \\ \hline
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1315,10 +1315,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:462: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:461: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.462 ...0^{-8}$ & -119.34 \degree & 0.053 \degree
+l.461 ...0^{-8}$ & -119.34 \degree & 0.053 \degree
                                                    \\ \hline
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1326,10 +1326,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:463: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:462: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.463 ... & $7.08\times 10^{-8}$ & -118.67 \degree
+l.462 ... & $7.08\times 10^{-8}$ & -118.67 \degree
                                                    & 0.073\degree \\ \hline
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1337,10 +1337,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:463: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:462: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.463 ...10^{-8}$ & -118.67 \degree & 0.073\degree
+l.462 ...10^{-8}$ & -118.67 \degree & 0.073\degree
                                                    \\ \hline
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1348,10 +1348,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:464: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:463: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.464 ... $3.17 \times 10^{-8}$ & -119.283 \degree
+l.463 ... $3.17 \times 10^{-8}$ & -119.283 \degree
                                                    & 0.052\degree \\ \hline
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1359,10 +1359,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:464: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:463: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.464 ...0^{-8}$ & -119.283 \degree & 0.052\degree
+l.463 ...0^{-8}$ & -119.283 \degree & 0.052\degree
                                                    \\ \hline
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1370,10 +1370,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:465: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:464: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.465 ... & $3.84 \times 10^{-8}$ & -119.19\degree
+l.464 ... & $3.84 \times 10^{-8}$ & -119.19\degree
                                                    & 0.057  \degree \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1381,10 +1381,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:465: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:464: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.465 ...0^{-8}$ & -119.19\degree & 0.057  \degree
+l.464 ...0^{-8}$ & -119.19\degree & 0.057  \degree
                                                    \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1397,12 +1397,12 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: Reference `eq:susceptibility subtraction end' on page 9 undefine
-d on input line 473.
+d on input line 472.
 
-c:/Users/user/Desktop/IC Design/main.tex:475: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:474: Undefined control sequence.
 <recently read> \bm 
                     
-l.475 ...nitude ratio for pen gel with ink is $\bm
+l.474 ...nitude ratio for pen gel with ink is $\bm
                                                   {-1.4259\pm 0.2693\times 1...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1410,10 +1410,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:475: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:474: Undefined control sequence.
 <recently read> \bm 
                     
-l.475 ...3\times 10^{-2}}$ and without ink is $\bm
+l.474 ...3\times 10^{-2}}$ and without ink is $\bm
                                                   {-1.0556 \pm 1.7119 \times...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1424,35 +1424,35 @@ and I'll forget about whatever was undefined.
 [9]
 
 LaTeX Warning: Reference `eq:complex magnetization beauti' on page 10 undefined
- on input line 480.
+ on input line 479.
 
 [10]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 483.
+(hyperref)                removing `math shift' on input line 482.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\tau' on input line 483.
+(hyperref)                removing `\tau' on input line 482.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 483.
+(hyperref)                removing `subscript' on input line 482.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 483.
+(hyperref)                removing `math shift' on input line 482.
 
 File: 10mG.pdf Graphic file (type pdf)
 <use 10mG.pdf>
 
 LaTeX Warning: Reference `fig:Ferrofluid 200mG Freq Response' on page 11 undefi
-ned on input line 492.
+ned on input line 491.
 
-c:/Users/user/Desktop/IC Design/main.tex:492: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:491: Undefined control sequence.
 <recently read> \bm 
                     
-l.492 ...onstant $\tau$ from the real part is $\bm
+l.491 ...onstant $\tau$ from the real part is $\bm
                                                   {8.29\pm 0.002 (\mu s) }$,...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1460,10 +1460,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:492: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:491: Undefined control sequence.
 <recently read> \bm 
                     
-l.492 ...time constant from imaginary part is $\bm
+l.491 ...time constant from imaginary part is $\bm
                                                   {1.98 \pm 0.011(\mu s)}$. ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1473,17 +1473,17 @@ and I'll forget about whatever was undefined.
 
 
 LaTeX Warning: Reference `eq:complex magnetization beauti' on page 11 undefined
- on input line 492.
+ on input line 491.
 
 File: 200mG.pdf Graphic file (type pdf)
 <use 200mG.pdf>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-c:/Users/user/Desktop/IC Design/main.tex:504: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:503: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.504 ...ty is 0.00102 $\rm{N/m^2}$ for 20 \degree
+l.503 ...ty is 0.00102 $\rm{N/m^2}$ for 20 \degree
                                                    C and 0.00178 for 0 \degr...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1491,10 +1491,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:504: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:503: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.504 ...or 20 \degree C and 0.00178 for 0 \degree
+l.503 ...or 20 \degree C and 0.00178 for 0 \degree
                                                    C ( data obtained from th...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1502,10 +1502,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:504: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:503: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.504 ... and the room temperature is 24.2 \degree
+l.503 ... and the room temperature is 24.2 \degree
                                                    C (from the thermometer) ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1513,10 +1513,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:504: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:503: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.504 ...ee C (from the thermometer) and 0 \degree
+l.503 ...ee C (from the thermometer) and 0 \degree
                                                    C for the cold sample, we...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1524,10 +1524,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:511: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:510: Undefined control sequence.
 \degree ->\ERROR 
                  
-l.511           & room temperature ($20 \degree
+l.510           & room temperature ($20 \degree
                                                 C$) \\ \hline
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1546,12 +1546,12 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: Reference `fig:YIG 200mG Freq Response' on page 12 undefined on 
-input line 534.
+input line 533.
 
-c:/Users/user/Desktop/IC Design/main.tex:534: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:533: Undefined control sequence.
 <recently read> \bm 
                     
-l.534 ...d imaginary part are the same. Also, $\bm
+l.533 ...d imaginary part are the same. Also, $\bm
                                                   {\tau = 70.2 \pm 13 (\mu s...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1559,10 +1559,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-c:/Users/user/Desktop/IC Design/main.tex:534: Undefined control sequence.
+c:/Users/user/Desktop/IC Design/main.tex:533: Undefined control sequence.
 <recently read> \bm 
                     
-l.534 ... on the real part fitting curve, and $\bm
+l.533 ... on the real part fitting curve, and $\bm
                                                   {10.5 \pm 0.8 (\mu s)} $ i...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1598,14 +1598,14 @@ Package rerunfilecheck Warning: File `main.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `main.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  F748DEFC671326C0344D3C8CEF68FB42;6378.
+(rerunfilecheck)             After:  8F905F236896D69E818EEC1E471EF2A8;6173.
  ) 
 Here is how much of TeX's memory you used:
- 24166 strings out of 409617
- 534439 string characters out of 5778277
+ 24169 strings out of 409617
+ 534579 string characters out of 5778277
  1947191 words of memory out of 5000000
- 45951 multiletter control sequences out of 15000+600000
- 567395 words of font info for 91 fonts, out of 8000000 for 9000
+ 45953 multiletter control sequences out of 15000+600000
+ 567403 words of font info for 92 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  94i,18n,117p,1101b,1021s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
