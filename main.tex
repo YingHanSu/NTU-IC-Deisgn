@@ -90,13 +90,13 @@
 \section{實驗理論與原理}
 
 \subsection{半加器與全加器 (Half Adder \& Full Adder)}
-加法器為數位邏輯電路中執行二進位加法運算之核心組件。最基本的\textbf{半加器}負責兩個單一位元 $A$ 與 $B$ 的加法，其輸出包含總和 ($S$) 與進位 ($C_{out}$)，布林邏輯表示式為：
+加法器為數位邏輯電路中執行二進位加法運算之核心組件。最基本的\textbf{半加器}負責兩個單一位元 $\mathrm{A}$ 與 $\mathrm{B}$ 的加法，其輸出包含總和 ($\mathrm{S}$) 與進位 ($\mathrm{C_{out}}$)，布林邏輯表示式為：
 \begin{gather}
     \mathrm{S} = \mathrm{A} \oplus \mathrm{B} \\
     \mathrm{C_{out}} = \mathrm{A} \cdot \mathrm{B}
 \end{gather}
 
-為了處理多位元的加法，必須考慮來自較低位元的進位。因此引入了\textbf{全加器}，它包含三個輸入端：兩個加數 ($A, B$) 以及一個進位輸入 ($C_{in}$)。全加器的輸出邏輯表示式為：
+為了處理多位元的加法，必須考慮來自較低位元的進位。因此引入了\textbf{全加器}，它包含三個輸入端：兩個加數 ($\mathrm{A, B}$) 以及一個進位輸入 ($\mathrm{C_{in}}$)。全加器的輸出邏輯表示式為：
 \begin{gather}
     \mathrm{S} = \mathrm{A} \oplus \mathrm{B} \oplus \mathrm{C_{in}} \\
     \mathrm{C_{out}} = (\mathrm{A} \cdot \mathrm{B}) + (\mathrm{C_{in}} \cdot (\mathrm{A} \oplus \mathrm{B}))
@@ -123,18 +123,21 @@
     \item \textbf{硬體接線：}
     \begin{itemize}
         \item 準備 IC 7486 (XOR) 與 IC 7400 (NAND)，將其固定於麵包板上。分別將兩顆 IC 的第 14 腳位連接至 ADALM2000 提供的 +5V 電源 (VCC)，第 7 腳位連接至接地 (GND)。
-        \item 依據理論化簡後之電路圖進行佈線：利用 7486 負責處理總和 ($S$) 與部分進位邏輯，並將其輸出結果接入 7400 進行 NAND 邏輯運算，以產生最終的進位輸出 ($C_{out}$)。
-        \item 將 ADALM2000 的數位腳位 (DIO) 連接至電路對應節點：DIO 0 接至輸入 $A$、DIO 1 接至輸入 $B$、DIO 2 接至輸入 $C_{in}$；量測端的部分，將 DIO 3 接至總和輸出 $S$、DIO 4 接至進位輸出 $C_{out}$。
+        \item 依據理論化簡後之電路圖進行佈線：利用 7486 負責處理總和 ($\mathrm{S}$) 與部分進位邏輯，並將其輸出結果接入 7400 進行 NAND 邏輯運算，以產生最終的進位輸出 ($\mathrm{C_{out}}$)。
+        \item 將 ADALM2000 的數位腳位 (DIO) 連接至電路對應節點：DIO 0 接至輸入 $\mathrm{A}$、DIO 1 接至輸入 $\mathrm{B}$、DIO 2 接至輸入 $\mathrm{C_{in}}$；量測端的部分，將 DIO 3 接至總和輸出 $\mathrm{S}$、DIO 4 接至進位輸出 $\mathrm{C_{out}}$。
     \end{itemize}
-    \begin{center}
+    \begin{figure}[H]
+        \centering
         \includegraphics[width=0.7\textwidth]{figure/IC layout.png}
-    \end{center}
+        \caption{Fig. 1-bit 全加器電路佈線圖(這個圖有串接兩個 3-bit 加法器)}
+        \label{fig:ic_layout}
+    \end{figure}
 
     
-    \item \textbf{軟體設定 (Scopy)：}
+    \item 軟體設定 (Scopy)：
     \begin{itemize}
-        \item \textbf{Pattern Generator (訊號產生器)：} 開啟 Scopy 軟體，將 DIO 0、1、2 設定為 Binary Counter 模式，並設定為三個等比頻率（例如 $\mathrm{A}$ 設為 4 kHz、$\mathrm{B}$ 設為 2 kHz、$\mathrm{C_{in}}$ 設為 1 kHz）。此設定可產生所有 8 種 0 與 1 的輸入排列組合。
-        \item \textbf{Logic Analyzer (邏輯分析儀)：} 開啟 DIO 0 至 DIO 4 的波形顯示。將取樣率 (Sample Rate) 設定為 5 Msps，取樣數量 (Nr of samples) 設定為 20k Samples。
+        \item Pattern Generator (訊號產生器)： 開啟 Scopy 軟體，將 DIO 0、1、2 設定為 Binary Counter 模式，並設定為三個等比頻率（例如 $\mathrm{A}$ 設為 4 kHz、$\mathrm{B}$ 設為 2 kHz、$\mathrm{C_{in}}$ 設為 1 kHz）。此設定可產生所有 8 種 0 與 1 的輸入排列組合。
+        \item Logic Analyzer (邏輯分析儀)： 開啟 DIO 0 至 DIO 4 的波形顯示。將取樣率 (Sample Rate) 設定為 5 Msps，取樣數量 (Nr of samples) 設定為 20k Samples。
         \item 擷取波形，觀察輸出腳位與輸入腳位之電位變化，並比對全加器真值表以驗證硬體邏輯。
     \end{itemize}
 \end{enumerate}
@@ -181,11 +184,12 @@
 
 \subsection{6-bit 加法器串聯結果與訊號傳遞分析}
 在進階實驗中，我們成功將兩個 3-bit 加法器模組串接，擴充為完整的 6-bit 加法器。測試過程中，我們輸入了多組十進位加法進行二進位驗證。例如測試 $3 + 5 = 8$ 時（即二進位之 $000011_2 + 000101_2$）：
-\begin{itemize}
-    \item \textbf{運算過程觀察：} 由於低位元（第1、2個 bit）的相加產生了進位，我們可以明確觀察到低位元模組的 $C_{out}$ 輸出高電位，並成功觸發高位元模組的 $C_{in}$ 接收端，最終正確點亮對應 $1000_2$ （即數值 8）的輸出 LED 燈號。
-\end{itemize}
 
-外的硬體邏輯，提前計算出各個位元是否會產生或傳遞進位，從而打破逐級等待的限制，大幅提升數位電路的運算效能。
+
+運算過程觀察： 由於低位元（第1、2個 bit）的相加產生了進位，我們可以明確觀察到低位元模組的 $\mathrm{C_{out}}$ 輸出高電位，並成功觸發高位元模組的 $\mathrm{C_{in}}$ 接收端，最終正確點亮對應 $\mathrm{1000_2}$ （即數值 8）的輸出 LED 燈號。
+
+
+
 \section{問題討論}
 
 \subsection{如何使用二進位表示負數？}
