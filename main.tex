@@ -115,7 +115,7 @@
    \begin{center}
        \begin{figure}[H]
            \centering
-           \includegraphics[width=0.4\textwidth]{"figure/IC 1 bit layout.png"}
+           \includegraphics[width=0.4\textwidth]{figure/IC 1 bit layout.png}
            \caption{1-bit 全加器電路實作圖}\label{fig:waveform_1bit}
        \end{figure}
    \end{center}
@@ -128,21 +128,21 @@
 \end{enumerate}
 
 \subsection{多位元加法器串聯測試 (實驗二)}
-\begin{enumerate}
+\begin{itemize}
    \item \textbf{3-bit 加法器模組測試：} 取得助教事先製作的 3-bit 加法器電路板，透過板上的指撥開關給定不同的輸入組合，並觀察 LED 燈亮的狀態來驗證 3-bit 的加法結果（例如測試 $3+5=8$，即二進位之 $011_2 + 101_2 = 1000_2$）。
        \begin{figure}[H]
            \centering
-           \includegraphics[width=0.4\textwidth]{"figure/IC 3 bits layout.png"}
+           \includegraphics[width=0.4\textwidth]{figure/IC 3 bits layout.png}
            \caption{3-bit 全加器電路實作圖}\label{fig:waveform_3bit}
        \end{figure}
    \item \textbf{6-bit 加法器擴充：} 將兩塊 3-bit 加法器模組進行串聯。把處理低位元 (Lower 3-bits) 模組的進位輸出端 ($\mathrm{C_{out}}$)，利用跳線連接至處理高位元 (Upper 3-bits) 模組的進位輸入端 ($\mathrm{C_{in}}$)。
        \begin{figure}[H]
            \centering
-           \includegraphics[width=0.4\textwidth]{"figure/IC 6 bits layout.png"}
+           \includegraphics[width=0.4\textwidth]{figure/IC 6 bits layout.png}
            \caption{6-bit 全加器電路實作圖}\label{fig:waveform_6bit}
        \end{figure}
    \item 透過 ADALM 再次進行輸入測試，確認進位訊號能順利跨模組傳遞，完成並驗證完整的 6-bit 加法運算邏輯。
-\end{enumerate}
+\end{itemize}
 
 \section{實驗結果與分析}
 
@@ -171,7 +171,7 @@
 實測之數位波形電壓與理論真值表完全吻合，證實本實驗的硬體佈線與邏輯化簡皆正確無誤。
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.7\textwidth]{"figure/output wave front.png"}
+   \includegraphics[width=0.7\textwidth]{figure/output wave front.png}
    \caption{1-bit 全加器輸入與輸出之實測波形圖}\label{fig:waveform}
 \end{figure}
 
