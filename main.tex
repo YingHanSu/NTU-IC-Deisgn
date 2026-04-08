@@ -1,15 +1,10 @@
 %!TEX program = xelatex
 \documentclass[12pt]{article}
 
-
 \usepackage[english]{babel}
 \usepackage{xeCJK}
-
-% Set page size and margins
-% Replace `letterpaper' with `a4paper' for UK/EU standard size
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 
-% Useful packages
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
@@ -27,8 +22,7 @@
 
 \usepackage{siunitx}
 
-\usepackage{float}
-\usepackage{subfloat}
+
 
 % ----- paragraph -----
 \usepackage{titlesec}
@@ -43,9 +37,7 @@
 % \setCJKmainfont{NotoSerifTC-Black.otf}
 % \setCJKmainfont{NotoSerifTC-Regular.otf}
 % \setCJKmainfont{NotoSerifTC-Bold.otf}
-\setCJKmainfont{NotoSerifTC-Regular}[
-  AutoFakeBold = 3
-]
+\setCJKmainfont{NotoSerifTC-Regular}
 
 \usepackage{indentfirst}
 \setlength\parindent{24pt}
@@ -107,10 +99,10 @@
 \subsection{邏輯閘實現與笛摩根定理}
 在實際的電路中，我們使用 IC 7486 (XOR 閘) 與 IC 7400 (NAND 閘) 來建構上述邏輯。
 
-對於總和 $S$ 可以直接透過兩個 XOR 閘串接完成，而進位 $\mathrm{C_{out}}$ 的部分，原本的設計需要 AND 閘與 OR 閘，為了僅使用 NAND 閘 (IC 7400) 來完成進位電路，我們可套用\textbf{笛摩根定理 (De Morgan's Laws)} 將原本的 AND-OR 形式轉換為 NAND-NAND 形式：
+對於總和 $\mathrm{S}$ 可以直接透過兩個 XOR 閘串接完成，而進位 $\mathrm{C_{out}}$ 的部分，原本的設計需要 AND 閘與 OR 閘，為了僅使用 NAND 閘 (IC 7400) 來完成進位電路，我們可套用\textbf{笛摩根定理 (De Morgan's Laws)} 將原本的 AND-OR 形式轉換為 NAND-NAND 形式：
 \begin{equation}
     \mathrm{C_{out} = \overline{ \overline{(A \cdot B)} \cdot \overline{(C_{in} \cdot (A \oplus B))} }}
-\end{equation}
+\end{equation}s
 透過此轉換，即可大幅簡化所需的 IC 種類，完全依靠 IC 7486（XOR 閘）與 IC 7400 (NAND 閘) 實現 1-bit 全加器。
 
 \subsection{漣波進位加法器 (Ripple Carry Adder)}
@@ -121,44 +113,52 @@
 \section{實驗架設與步驟}
 
 \subsection{1-bit 數位加法器實作 (實驗一)}
-\begin{enumerate}
+
+\begin{itemize}
     \item \textbf{硬體接線：}
-    \begin{itemize}
-        \item 準備 IC 7486 與 IC 7400，將其固定於麵包板上。分別將兩顆 IC 的第 14 腳位連接至 ADALM2000 提供的 +5V 電源 (VCC)，第 7 腳位連接至接地 (GND)。
-        \item 依據理論化簡後之電路圖進行佈線：利用 7486 負責處理總和 ($S$) 與部分進位邏輯，並將其輸出結果接入 7400 進行 NAND 邏輯運算，以產生最終的進位輸出 ($\mathrm{C_{out}})。
-        \item 將 ADALM2000 的數位腳位 (DIO) 連接至電路對應節點：DIO 0 接至輸入 $A$、DIO 1 接至輸入 $B$、DIO 2 接至輸入 $C_{in}$；量測端的部分，將 DIO 3 接至總和輸出 $S$、DIO 4 接至進位輸出 $\mathrm{C_{out}}$。
-    \end{itemize}
-    \begin{center}
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=0.4\textwidth]{figure/IC 1 bit layout.png}
-            \caption{1-bit 全加器電路實作圖}\label{fig:waveform_1bit}
-        \end{figure}
-    \end{center}
-    \item \textbf{軟體設定 (Scopy)：}
-    \begin{itemize}
-        \item \textbf{Pattern Generator (訊號產生器)：} 開啟 Scopy 軟體，將 DIO 0、1、2 設定為 Binary Counter 模式，並設定為三個等比頻率（例如 $\mathrm{A}$ 設為 4 kHz、$\mathrm{B}$ 設為 2 kHz、$\mathrm{C_{in}} 設為 1 kHz）。此設定可產生所有 8 種 0 與 1 的輸入排列組合。
-        \item \textbf{Logic Analyzer (邏輯分析儀)：} 開啟 DIO 0 至 DIO 4 的波形顯示。將取樣率 (Sample Rate) 設定為 5 Msps，取樣數量 (Nr of samples) 設定為 20k Samples。
-        \item 擷取波形，觀察輸出腳位與輸入腳位之電位變化，並比對全加器真值表以驗證硬體邏輯。
-    \end{itemize}
-\end{enumerate}
+    \item 準備 IC 7486 與 IC 7400，將其固定於麵包板上。分別將兩顆 IC 的第 14 腳位連接至 ADALM2000 提供的 +5V 電源 (VCC)，第 7 腳位連接至接地 (GND)。
+    \item 依據理論化簡後之電路圖進行佈線：利用 7486 負責處理總和 ($\mathrm{S}$) 與部分進位邏輯，並將其輸出結果接入 7400 進行 NAND 邏輯運算，以產生最終的進位輸出 ($\mathrm{C_{out}}$)
+    \item 將 ADALM2000 的數位腳位 (DIO) 連接至電路對應節點：DIO 0 接至輸入 $\mathrm{A}$、DIO 1 接至輸入 $\mathrm{B}$、DIO 2 接至輸入 $\mathrm{C_{in}}$；量測端的部分，將 DIO 3 接至總和輸出 $\mathrm{S} $、DIO 4 接至進位輸出 $\mathrm{C_{out}}$。
+\end{itemize}
+
+\begin{center}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\textwidth]{figure/IC 1 bit layout.png}
+        \caption{1-bit 全加器電路實作圖}\label{fig:waveform_1bit}
+    \end{figure}
+\end{center}
+
+\begin{itemize}
+\item \textbf{軟體設定 (Scopy)：}
+\item \textbf{Pattern Generator (訊號產生器)：} 開啟 Scopy 軟體，將 DIO 0、1、2 設定為 Binary Counter 模式，並設定為三個等比頻率（例如 $\mathrm{A}$ 設為 4 kHz、$\mathrm{B}$ 設為 2 kHz、$\mathrm{C_{in}}$ 設為 1 kHz）。此設定可產生所有 8 種 0 與 1 的輸入排列組合。
+\item \textbf{Logic Analyzer (邏輯分析儀)：} 開啟 DIO 0 至 DIO 4 的波形顯示。將取樣率 (Sample Rate) 設定為 5 Msps，取樣數量 (Nr of samples) 設定為 20k Samples。
+\item 擷取波形，觀察輸出腳位與輸入腳位之電位變化，並比對全加器真值表以驗證硬體邏輯。
+\end{itemize}
+
 
 \subsection{多位元加法器串聯測試 (實驗二)}
-\begin{enumerate}
+\begin{itemize}
     \item \textbf{3-bit 加法器模組測試：} 取得助教事先製作的 3-bit 加法器電路板，透過板上的指撥開關給定不同的輸入組合，並觀察 LED 燈亮的狀態來驗證 3-bit 的加法結果（例如測試 $3+5=8$，即二進位之 $011_2 + 101_2 = 1000_2$）。
+    
         \begin{figure}[H]
             \centering
+            % Added quotes to handle spaces in the filename
             \includegraphics[width=0.4\textwidth]{figure/IC 3 bits layout.png}
             \caption{3-bit 全加器電路實作圖}\label{fig:waveform_3bit}
         \end{figure}
+
     \item \textbf{6-bit 加法器擴充：} 將兩塊 3-bit 加法器模組進行串聯。把處理低位元 (Lower 3-bits) 模組的進位輸出端 ($\mathrm{C_{out}}$)，利用跳線連接至處理高位元 (Upper 3-bits) 模組的進位輸入端 ($\mathrm{C_{in}}$)。
+    
         \begin{figure}[H]
             \centering
+            % Added quotes to handle spaces in the filename
             \includegraphics[width=0.4\textwidth]{figure/IC 6 bits layout.png}
             \caption{6-bit 全加器電路實作圖}\label{fig:waveform_6bit}
         \end{figure}
+
     \item 透過 ADALM 再次進行輸入測試，確認進位訊號能順利跨模組傳遞，完成並驗證完整的 6-bit 加法運算邏輯。
-\end{enumerate}
+\end{itemize}
 
 \section{實驗結果與分析}
 
@@ -255,5 +255,3 @@
 \end{document}
 
 
-
-\end{document} 
