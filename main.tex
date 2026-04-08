@@ -125,8 +125,8 @@
     \item \textbf{硬體接線：}
     \begin{itemize}
         \item 準備 IC 7486 與 IC 7400，將其固定於麵包板上。分別將兩顆 IC 的第 14 腳位連接至 ADALM2000 提供的 +5V 電源 (VCC)，第 7 腳位連接至接地 (GND)。
-        \item 依據理論化簡後之電路圖進行佈線：利用 7486 負責處理總和 ($S$) 與部分進位邏輯，並將其輸出結果接入 7400 進行 NAND 邏輯運算，以產生最終的進位輸出 ($C_{out}$)。
-        \item 將 ADALM2000 的數位腳位 (DIO) 連接至電路對應節點：DIO 0 接至輸入 $A$、DIO 1 接至輸入 $B$、DIO 2 接至輸入 $C_{in}$；量測端的部分，將 DIO 3 接至總和輸出 $S$、DIO 4 接至進位輸出 $C_{out}$。
+        \item 依據理論化簡後之電路圖進行佈線：利用 7486 負責處理總和 ($S$) 與部分進位邏輯，並將其輸出結果接入 7400 進行 NAND 邏輯運算，以產生最終的進位輸出 ($\mathrm{C_{out}})。
+        \item 將 ADALM2000 的數位腳位 (DIO) 連接至電路對應節點：DIO 0 接至輸入 $A$、DIO 1 接至輸入 $B$、DIO 2 接至輸入 $C_{in}$；量測端的部分，將 DIO 3 接至總和輸出 $S$、DIO 4 接至進位輸出 $\mathrm{C_{out}}$。
     \end{itemize}
     \begin{center}
         \begin{figure}[H]
@@ -137,7 +137,7 @@
     \end{center}
     \item \textbf{軟體設定 (Scopy)：}
     \begin{itemize}
-        \item \textbf{Pattern Generator (訊號產生器)：} 開啟 Scopy 軟體，將 DIO 0、1、2 設定為 Binary Counter 模式，並設定為三個等比頻率（例如 $\mathrm{A}$ 設為 4 kHz、$\mathrm{B}$ 設為 2 kHz、$\mathrm{C_{in}}$ 設為 1 kHz）。此設定可產生所有 8 種 0 與 1 的輸入排列組合。
+        \item \textbf{Pattern Generator (訊號產生器)：} 開啟 Scopy 軟體，將 DIO 0、1、2 設定為 Binary Counter 模式，並設定為三個等比頻率（例如 $\mathrm{A}$ 設為 4 kHz、$\mathrm{B}$ 設為 2 kHz、$\mathrm{C_{in}} 設為 1 kHz）。此設定可產生所有 8 種 0 與 1 的輸入排列組合。
         \item \textbf{Logic Analyzer (邏輯分析儀)：} 開啟 DIO 0 至 DIO 4 的波形顯示。將取樣率 (Sample Rate) 設定為 5 Msps，取樣數量 (Nr of samples) 設定為 20k Samples。
         \item 擷取波形，觀察輸出腳位與輸入腳位之電位變化，並比對全加器真值表以驗證硬體邏輯。
     \end{itemize}
@@ -202,11 +202,11 @@
 \section{問題討論}
 
 
-\subsection{\textbf{如何用二進位表示負數？} }
+\subsection{如何用二進位表示負數？}
 表示法除了得顯示數字絕對值大小，還得有顯示數字正負的公用。例如，6 在二進位為 0110，若要表示 -6，第一思路是令 $(6)+(-6)=0$。計算 $(0110)+(1010)=(0000)$，但 1010 直接看是 +10。為了解決此問題，我們增加一個 \textbf{signed bit} (0 代表 +，1 代表 -)。一個 5-bit signed binary number 能表達 -16 到 +15。給定二進位正數 $A$，其負數為 $(-A) = \text{NOT}(A) + 1$。例如 $B = (0101110)$，則 $\text{NOT}(B) = 1010001$，故 $-B = 1010010$。這即是 \textbf{2’s complement} 的概念。
 
 
-\subsection{\textbf{如何用數位電路實現乘法、指數運算？} }
+\subsection{如何用數位電路實現乘法、指數運算？ }
 \begin{itemize}
 \item \textbf{乘法運算：} 基本單位是加法，使用 \textbf{shift and add} 的方法。設計方向包含 Array Multiplier（優化運算時間）、Sequential Multiplier（利用移位暫存器省面積）以及 Booth Multiplier（演算法層面優化）。
 \item \textbf{舉例：} 數位電路實現乘法，一開始我們會想像會做很多加法，畢竟乘法就是加法器的兒子。我們舉例
@@ -240,7 +240,7 @@
 \end{itemize}
 
 
-\subsection{\textbf{商用電路有什麼優化電路的方式嗎？}}
+\subsection{商用電路有什麼優化電路的方式嗎？}
 \begin{itemize}
 \item \textbf{優化速度：} 專注於優化 \textbf{Carry Lookahead} 邏輯以減少門延遲 (gate delay)，並利用 \textbf{pipeline} 與 flip-flops 分割流程，提升運算效率。
 \item \textbf{優化面積與功耗：} 使用 \textbf{clock gating} 關閉閒置電路，並透過 \textbf{電路資源共享} 減少面積（例如不同時進行的 A+B 與 C+D 共用一個加法器）。
@@ -248,7 +248,7 @@
 \end{itemize}
 
 
-\subsection{\textbf{為什麼不能用類比元件做加法就好？}為什麼不能用類比元件做加法就好？}
+\subsection{為什麼不能用類比元件做加法就好？}
 數位電路的優點在於訊號儲存穩定且同步，具有明確的 \textbf{Noise Margin}。類比元件（如電容）會漏電，且易受溫度影響產生雜訊，導致誤差率高。類比加法僅適用於低功耗、能容忍高誤差且需即時反應的場景（如 In-memory computing 或 RF audio analyzer）。
 
 
