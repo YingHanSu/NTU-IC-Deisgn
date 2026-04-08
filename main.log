@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2026.4.8)  8 APR 2026 16:57
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2026.4.8)  8 APR 2026 17:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -810,13 +810,13 @@ File: figure/IC layout.png Graphic file (type bmp)
  [2]
 File: figure/output wave front.png Graphic file (type bmp)
 <figure/output wave front.png>
- [3] [4] [5] (main.aux)
+ [3] [4] (main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2022/08/05>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: A205AEED08B7FDDE782226172963A0D4;2580.
+(rerunfilecheck)             Checksum: A79DD458B97F7CBA2873C7752A788500;2520.
  ) 
 Here is how much of TeX's memory you used:
  21715 strings out of 409617
@@ -827,4 +827,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  74i,9n,117p,491b,1103s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (6 pages).
+Output written on main.pdf (5 pages).

@@ -112,9 +112,9 @@
 透過此轉換，即可大幅簡化所需的 IC 種類，完全依靠 7486 與 7400 實現 1-bit 全加器。
 
 \subsection{漣波進位加法器 (Ripple Carry Adder)}
-要實現多位元（如本實驗之 6-bit）的加法運算，可將多個全加器串聯組成「漣波進位加法器」。其核心原理是將第 $i$ 個位元的進位輸出 ($C_{out, i}$) 直接連接至第 $i+1$ 個位元的進位輸入 ($C_{in, i+1}$)。
+要實現多位元（如本實驗之 6-bit）的加法運算，可將多個全加器串聯組成「漣波進位加法器」。其核心原理是將第 $i$ 個位元的進位輸出 ($\mathrm{C_{out, i}}$) 直接連接至第 $i+1$ 個位元的進位輸入 ($\mathrm{C_{in, i+1}}$)。
 
-本次實驗中，我們將兩個現成的 3-bit 加法器模組進行擴充，把低位元 (Lower 3-bits) 加法器的最高位進位輸出，連接至高位元 (Upper 3-bits) 加法器的最低位進位輸入 ($C_{in}$)，藉由進位訊號的傳遞 (Carry Propagation)，成功構建出完整的 6-bit 數位加法器。
+本次實驗中，我們將兩個現成的 3-bit 加法器模組進行擴充，把低位元 (Lower 3-bits) 加法器的最高位進位輸出，連接至高位元 (Upper 3-bits) 加法器的最低位進位輸入 ($\mathrm{C_{in}}$)，藉由進位訊號的傳遞 (Carry Propagation)，成功構建出完整的 6-bit 數位加法器。
 
 \section{實驗架設與步驟}
 
@@ -133,7 +133,7 @@
     
     \item \textbf{軟體設定 (Scopy)：}
     \begin{itemize}
-        \item \textbf{Pattern Generator (訊號產生器)：} 開啟 Scopy 軟體，將 DIO 0、1、2 設定為 Binary Counter 模式，並設定為三個等比頻率（例如 $A$ 設為 4 kHz、$B$ 設為 2 kHz、$C_{in}$ 設為 1 kHz）。此設定可產生所有 8 種 0 與 1 的輸入排列組合。
+        \item \textbf{Pattern Generator (訊號產生器)：} 開啟 Scopy 軟體，將 DIO 0、1、2 設定為 Binary Counter 模式，並設定為三個等比頻率（例如 $\mathrm{A}$ 設為 4 kHz、$\mathrm{B}$ 設為 2 kHz、$\mathrm{C_{in}}$ 設為 1 kHz）。此設定可產生所有 8 種 0 與 1 的輸入排列組合。
         \item \textbf{Logic Analyzer (邏輯分析儀)：} 開啟 DIO 0 至 DIO 4 的波形顯示。將取樣率 (Sample Rate) 設定為 5 Msps，取樣數量 (Nr of samples) 設定為 20k Samples。
         \item 擷取波形，觀察輸出腳位與輸入腳位之電位變化，並比對全加器真值表以驗證硬體邏輯。
     \end{itemize}
@@ -142,7 +142,7 @@
 \subsection{多位元加法器串聯測試 (實驗二)}
 \begin{enumerate}
     \item \textbf{3-bit 加法器模組測試：} 取得助教事先製作的 3-bit 加法器電路板，透過板上的指撥開關給定不同的輸入組合，並觀察 LED 燈亮的狀態來驗證 3-bit 的加法結果（例如測試 $3+5=8$，即二進位之 $011_2 + 101_2 = 1000_2$）。
-    \item \textbf{6-bit 加法器擴充：} 將兩塊 3-bit 加法器模組進行串聯。把處理低位元 (Lower 3-bits) 模組的進位輸出端 ($C_{out}$)，利用跳線連接至處理高位元 (Upper 3-bits) 模組的進位輸入端 ($C_{in}$)。
+    \item \textbf{6-bit 加法器擴充：} 將兩塊 3-bit 加法器模組進行串聯。把處理低位元 (Lower 3-bits) 模組的進位輸出端 ($\mathrm{C_{out}}$)，利用跳線連接至處理高位元 (Upper 3-bits) 模組的進位輸入端 ($\mathrm{C_{in}}$)。
     \item 透過 ADALM 再次進行輸入測試，確認進位訊號能順利跨模組傳遞，完成並驗證完整的 6-bit 加法運算邏輯。
 \end{enumerate}
 
@@ -168,8 +168,8 @@
         \end{table}
     \end{center}
 \begin{itemize}
-    \item \textbf{總和 ($S$) 邏輯分析：} 當輸入端 $A, B, C_{in}$ 中有「奇數」個 1 處於高電位時（即狀態 3rd, 5th, 6th, 8th），總和輸出 $S$ 皆為 1。這完美吻合 XOR 閘 ($A \oplus B \oplus C_{in}$) 的奇偶校驗 (Parity Check) 特性。
-    \item \textbf{進位 ($C_{out}$) 邏輯分析：} 當輸入端有「兩個或三個」 1 處於高電位時（即狀態 1st, 2nd, 3rd, 7th），進位輸出 $C_{out}$ 皆為 1。這證明了我們利用 IC 7400 (NAND 閘) 配合笛摩根定理所建構的進位電路，成功實現了全加器的多數決邏輯 (Majority Logic)。
+    \item \textbf{總和 ($\mathrm{S}$) 邏輯分析：} 當輸入端 $\mathrm{A, B, C_{in}}$ 中有「奇數」個 1 處於高電位時（即狀態 3rd, 5th, 6th, 8th），總和輸出 $\mathrm{S}$ 皆為 1。這完美吻合 XOR 閘 ($\mathrm{A \oplus B \oplus C_{in}}$) 的奇偶校驗 (Parity Check) 特性。
+    \item \textbf{進位 ($\mathrm{C_{out}}$) 邏輯分析：} 當輸入端有「兩個或三個」 1 處於高電位時（即狀態 1st, 2nd, 3rd, 7th），進位輸出 $\mathrm{C_{out}}$ 皆為 1。這證明了我們利用 IC 7400 (NAND 閘) 配合笛摩根定理所建構的進位電路，成功實現了全加器的多數決邏輯 (Majority Logic)。
 \end{itemize}
 實測之數位波形電壓準位與理論真值表完全吻合，證實了本實驗的硬體佈線與邏輯化簡皆正確無誤。
 \begin{figure}[H]
@@ -206,9 +206,5 @@
 
 \textbf{商用電路的優化方式：預看進位加法器 (Carry Lookahead Adder, CLA)} \\
 為了解決 RCA 的延遲瓶頸，商用處理器通常採用 CLA 架構。CLA 放棄了逐級等待進位的作法，而是透過增加額外的組合邏輯電路，利用輸入的 $A$ 與 $B$ 訊號提前計算出「進位產生 (Generate, $G$)」與「進位傳遞 (Propagate, $P$)」的狀態。透過這些狀態，電路可以在極短的時間內「同時」算出所有位元的進位訊號，從而打破線性延遲的限制，大幅提升多位元運算的效能。
-
-
-\section{總結} 
-
 
 \end{document} 
