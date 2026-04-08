@@ -198,25 +198,62 @@
 \end{itemize}
 
 然而，此種架構存在一個固有的效能瓶頸：每一個位元的進位輸出必須等待前一級的進位計算完成後才能進行，導致時間的延遲隨位元數增加而線性累積。為了改善此問題，可引入超前進位加法器（Carry Lookahead Adder, CLA），其概念是透過額外的硬體邏輯，提前計算出各個位元是否會產生或傳遞進位，從而打破逐級等待的限制，大幅提升數位電路的運算效能。
-\section{問題討論}
 
-\subsection{如何使用二進位表示負數？}
-在數位電路中，最常使用\textbf{二補數 (Two's Complement)}系統來表示有號數（包含正負數）。
-其轉換規則為：將正數的二進位表示法的所有位元反轉（0 變 1，1 變 0，即求取「一補數」），然後在最低位元 (LSB) 加 1。
+section{問題討論}
 
-在二補數系統中，最高位元 (MSB) 通常被視為\textbf{符號位元 (Sign Bit)}：0 代表正數，1 代表負數。採用二補數系統最大的優勢在於，硬體電路在執行減法時，可以直接將其視為「加上一個負數」，因此加法與減法運算可以共用同一組加法器硬體，大幅簡化了電路設計的複雜度。
 
-\subsection{如何用數位電路實現乘法、指數運算？}
+\subsection{\textbf{如何用二進位表示負數？} }
+表示法除了得顯示數字絕對值大小，還得有顯示數字正負的公用。例如，6 在二進位為 0110，若要表示 -6，第一思路是令 $(6)+(-6)=0$。計算 $(0110)+(1010)=(0000)$，但 1010 直接看是 +10。為了解決此問題，我們增加一個 \textbf{signed bit} (0 代表 +，1 代表 -)。一個 5-bit signed binary number 能表達 -16 到 +15。給定二進位正數 $A$，其負數為 $(-A) = \text{NOT}(A) + 1$。例如 $B = (0101110)$，則 $\text{NOT}(B) = 1010001$，故 $-B = 1010010$。這即是 \textbf{2’s complement} 的概念。
+
+
+\subsection{\textbf{如何用數位電路實現乘法、指數運算？} }
 \begin{itemize}
-    \item \textbf{乘法運算：} 數位電路中的乘法基本原理是\textbf{「移位與相加」 (Shift and Add)}。過程類似於人類計算十進位直式乘法，乘數的每一個位元會與被乘數進行 AND 邏輯運算，產生「部分積 (Partial Product)」。接著，將這些部分積依據權重向左移位，最後透過多組加法器（例如陣列乘法器 Array Multiplier）將所有部分積相加，即可得到最終乘積。
-    \item \textbf{指數運算：} 指數運算本質上是\textbf{「重複的乘法」}。在基礎硬體設計上，可藉由有限狀態機 (FSM) 控制硬體乘法器，進行多次的迴圈相乘。然而，針對複雜的指數函數（如 $e^x$），商用晶片通常會採用\textbf{查表法 (Look-Up Table, LUT)} 直接輸出預先算好的結果，或是利用\textbf{泰勒級數 (Taylor Series) 展開}，將指數函數近似為加法與乘法的多項式組合，以換取更高的運算效率。
+\item \textbf{乘法運算：} 基本單位是加法，使用 \textbf{shift and add} 的方法。設計方向包含 Array Multiplier（優化運算時間）、Sequential Multiplier（利用移位暫存器省面積）以及 Booth Multiplier（演算法層面優化）。
+\item \textbf{舉例：} 數位電路實現乘法，一開始我們會想像會做很多加法，畢竟乘法就是加法器的兒子。我們舉例
+去思考，13*11=143，思考一個4bit*4bit Multiplier如何設計?
+13=(1101), 11=(1011)，以下為小學乘法器做法，若要節省加法器使用面積，可以用移位暫存
+器的方法，儲存加法進度，利用多個cycle把加法裡的從LSB到MSB一個個加完，如右下圖，省了很多面積/資源重複使用。也可以放很多加法器array，會用很多加法器，但運算1個cycle就做完。
+最後要提，現有乘法器adder因為要加很多bit數，從LSB加到MSB會有很長的Ripple Add propogation path導致gate delay很大，電路運算慢。所以我們會用CLA(Carry Look Ahead)的邏輯優化我們的加法器，
+讓他們跑得更快更有效率，利用了一點平行化的概念在裡面，平行化在乘法器設計裡扮演很重要角色。
+\begin{figure}[H]
+   \centering
+   % 第一張圖
+   \begin{subfigure}[b]{0.45\textwidth}
+       \centering
+       \includegraphics[width=0.3\textwidth]{figure/乘法器.drawio.png}
+       \caption{原始乘法器架構}
+       \label{fig:mul1}
+   \end{subfigure}
+   \hfill % 在兩張圖之間加入彈性間距，把圖片推向兩側
+   % 第二張圖
+   \begin{subfigure}[b]{0.45\textwidth}
+       \centering
+       \includegraphics[width=0.3\textwidth]{figure/乘法器改.drawio.png}
+       \caption{優化後的乘法器架構}
+       \label{fig:mul2}
+   \end{subfigure}
+  
+   \caption{乘法器設計之對比與優化分析}
+   \label{fig:comparison}
+\end{figure}
+\item \textbf{指數運算 ($X^Y$)：} 基本單位是乘法，使用 \textbf{square and multiply} 方法。將 $Y$ 做二進位處理（如 $7^{19}$，將 19 轉為 $10011_2$），運算時間可從 $O(N)$ 降至 $O(\log N)$。此外，\textbf{CORDIC} 演算法利用歐拉公式知識，僅需加法器與暫存器配合 lookup tables 存雙曲函數值即可估計指數值。
 \end{itemize}
 
-\subsection{進行多位元加法時（如實驗二），可能會遇到哪些問題或限制？商用電路有什麼優化電路的方式嗎？}
-\textbf{遇到的問題與限制：進位延遲 (Carry Propagation Delay)} \\
-如本次實驗二所串聯的 6-bit 加法器，其架構屬於「漣波進位加法器 (Ripple Carry Adder, RCA)」。此架構的致命缺點是：高位元的全加器必須等待低位元計算完畢並將進位訊號 ($C_{out}$) 傳遞過來後，才能得出正確的結果。當位元數增加（如現代 CPU 的 32-bit 或 64-bit 加法），訊號經過層層邏輯閘所累積的時間延遲會非常可觀，這會嚴重限制處理器的最高工作時脈 (Clock Speed)。
 
-\textbf{商用電路的優化方式：預看進位加法器 (Carry Lookahead Adder, CLA)} \\
-為了解決 RCA 的延遲瓶頸，商用處理器通常採用 CLA 架構。CLA 放棄了逐級等待進位的作法，而是透過增加額外的組合邏輯電路，利用輸入的 $A$ 與 $B$ 訊號提前計算出「進位產生 (Generate, $G$)」與「進位傳遞 (Propagate, $P$)」的狀態。透過這些狀態，電路可以在極短的時間內「同時」算出所有位元的進位訊號，從而打破線性延遲的限制，大幅提升多位元運算的效能。
+\subsection{\textbf{商用電路有什麼優化電路的方式嗎？}}
+\begin{itemize}
+\item \textbf{優化速度：} 專注於優化 \textbf{Carry Lookahead} 邏輯以減少門延遲 (gate delay)，並利用 \textbf{pipeline} 與 flip-flops 分割流程，提升運算效率。
+\item \textbf{優化面積與功耗：} 使用 \textbf{clock gating} 關閉閒置電路，並透過 \textbf{電路資源共享} 減少面積（例如不同時進行的 A+B 與 C+D 共用一個加法器）。
+\item \textbf{EDA 輔助：} 利用自動化工具優化 clock tree、繞線佈局與熱平衡。優化目標取決於產品：電梯電路專注省電，電競電腦專注速度。
+\end{itemize}
+
+
+\subsection{\textbf{為什麼不能用類比元件做加法就好？}為什麼不能用類比元件做加法就好？}
+數位電路的優點在於訊號儲存穩定且同步，具有明確的 \textbf{Noise Margin}。類比元件（如電容）會漏電，且易受溫度影響產生雜訊，導致誤差率高。類比加法僅適用於低功耗、能容忍高誤差且需即時反應的場景（如 In-memory computing 或 RF audio analyzer）。
+
+
+\end{document}
+
+
 
 \end{document} 
