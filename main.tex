@@ -43,7 +43,9 @@
 % \setCJKmainfont{NotoSerifTC-Black.otf}
 % \setCJKmainfont{NotoSerifTC-Regular.otf}
 % \setCJKmainfont{NotoSerifTC-Bold.otf}
-\setCJKmainfont{NotoSerifTC-Regular}
+\setCJKmainfont{NotoSerifTC-Regular}[
+  AutoFakeBold = 3
+]
 
 \usepackage{indentfirst}
 \setlength\parindent{24pt}
@@ -171,9 +173,9 @@
         \textbf{狀態} & \textbf{1st} & \textbf{2nd} & \textbf{3rd} & \textbf{4th} & \textbf{5th} & \textbf{6th} & \textbf{7th} & \textbf{8th} \\ \hline \hline
         \textbf{A}    & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 \\ \hline
         \textbf{B}    & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\ \hline
-        \textbf{Cin}  & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 \\ \hline
+        \textbf{$C_{in}$}  & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 \\ \hline
         \textbf{S}    & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 \\ \hline
-        \textbf{Cout} & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 \\ \hline
+        \textbf{$C_{out}$} & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 \\ \hline
         \end{tabular}
         \caption{1-bit 全加器輸入與輸出之實測真值表}\label{table:truth_table}
         \end{table}
@@ -182,7 +184,7 @@
     \item \textbf{總和 ($\mathrm{S}$) 邏輯分析：} 當輸入端 $\mathrm{A, B, C_{in}}$ 中有「奇數」個 1 處於高電位時（即狀態 3rd, 5th, 6th, 8th），總和輸出 $\mathrm{S}$ 皆為 1。這完美吻合 XOR 閘 ($\mathrm{A \oplus B \oplus C_{in}}$) 的奇偶校驗 (Parity Check) 特性。
     \item \textbf{進位 ($\mathrm{C_{out}}$) 邏輯分析：} 當輸入端有「兩個或三個」 1 處於高電位時（即狀態 1st, 2nd, 3rd, 7th），進位輸出 $\mathrm{C_{out}}$ 皆為 1。這證明了我們利用 IC 7400 (NAND 閘) 配合笛摩根定理所建構的進位電路，成功實現了全加器的多數決邏輯 (Majority Logic)。
 \end{itemize}
-實測之數位波形電壓準位與理論真值表完全吻合，證實了本實驗的硬體佈線與邏輯化簡皆正確無誤。
+實測之數位波形電壓與理論真值表完全吻合，證實本實驗的硬體佈線與邏輯化簡皆正確無誤。
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{figure/output wave front.png}
@@ -192,10 +194,10 @@
 \subsection{6-bit 加法器串聯結果與訊號傳遞分析}
 在進階實驗中，我們成功將兩個 3-bit 加法器模組串接，擴充為完整的 6-bit 加法器。測試過程中，我們輸入了多組十進位加法進行二進位驗證。例如測試 $3 + 5 = 8$ 時（即二進位之 $000011_2 + 000101_2$）：
 \begin{itemize}
-    \item \textbf{運算過程觀察：} 由於低位元（第1、2個 bit）的相加產生了進位，我們可以明確觀察到低位元模組的 $C_{out}$ 輸出高電位，並成功觸發高位元模組的 $C_{in}$ 接收端，最終正確點亮對應 $1000_2$ （即數值 8）的輸出 LED 燈號。
+    \item \textbf{運算過程觀察：} 由於低位元（第1、2個 bit）的相加產生了進位，我們可以觀察到低位元模組的 $C_{out}$ 輸出高電位，並成功觸發高位元模組的 $C_{in}$ 接收端，最終正確點亮對應 $1000_2$ （即數值 8）的輸出 LED 燈。
 \end{itemize}
 
-外的硬體邏輯，提前計算出各個位元是否會產生或傳遞進位，從而打破逐級等待的限制，大幅提升數位電路的運算效能。
+然而，此種架構存在一個固有的效能瓶頸：每一個位元的進位輸出必須等待前一級的進位計算完成後才能進行，導致時間的延遲隨位元數增加而線性累積。為了改善此問題，可引入超前進位加法器（Carry Lookahead Adder, CLA），其概念是透過額外的硬體邏輯，提前計算出各個位元是否會產生或傳遞進位，從而打破逐級等待的限制，大幅提升數位電路的運算效能。
 \section{問題討論}
 
 \subsection{如何使用二進位表示負數？}
