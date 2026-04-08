@@ -114,7 +114,7 @@
 透過此轉換，即可大幅簡化所需的 IC 種類，完全依靠 IC 7486（XOR 閘）與 IC 7400 (NAND 閘) 實現 1-bit 全加器。
 
 \subsection{漣波進位加法器 (Ripple Carry Adder)}
-要實現多位元（如本實驗之 6-bit）的加法運算，可將多個全加器串聯組成「漣波進位加法器」。其原理是將第 $i$ 個位元的進位輸出 ($\mathrm{C_{out, i}}$) 直接連接至第 $i+1$ 個位元的進位輸入 ($\mathrm{C_{in, i+1}}$)。
+要實現多位元（如本實驗之 6-bit）的加法運算，可將多個全加器串聯組成「漣波進位加法器」。其原理是將第 $\mathrm{i}$ 個位元的進位輸出 ($\mathrm{C_{out, i}}$) 直接連接至第 $i+1$ 個位元的進位輸入 ($\mathrm{C_{in, i+1}}$)。
 
 本次實驗中，我們將兩個現成的 3-bit 加法器模組進行擴充，把低位元 (Lower 3-bits) 加法器的最高位進位輸出，連接至高位元 (Upper 3-bits) 加法器的最低位進位輸入 ($\mathrm{C_{in}}$)，藉由進位訊號的傳遞 (Carry Propagation)，成功構建出完整的 6-bit 數位加法器。
 
@@ -173,9 +173,9 @@
         \textbf{狀態} & \textbf{1st} & \textbf{2nd} & \textbf{3rd} & \textbf{4th} & \textbf{5th} & \textbf{6th} & \textbf{7th} & \textbf{8th} \\ \hline \hline
         \textbf{A}    & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 \\ \hline
         \textbf{B}    & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\ \hline
-        \textbf{$C_{in}$}  & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 \\ \hline
+        \textbf{$\mathrm{C_{out, i}}$}  & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 \\ \hline
         \textbf{S}    & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 \\ \hline
-        \textbf{$C_{out}$} & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 \\ \hline
+        \textbf{$\mathrm{C_{out, i}}$} & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 \\ \hline
         \end{tabular}
         \caption{1-bit 全加器輸入與輸出之實測真值表}\label{table:truth_table}
         \end{table}
