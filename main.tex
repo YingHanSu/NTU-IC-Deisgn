@@ -130,7 +130,27 @@
         \item 依據理論化簡後之電路圖進行佈線：利用 7486 負責處理總和 ($S$) 與部分進位邏輯，並將其輸出結果接入 7400 進行 NAND 邏輯運算，以產生最終的進位輸出 ($C_{out}$)。
         \item 將 ADALM2000 的數位腳位 (DIO) 連接至電路對應節點：DIO 0 接至輸入 $A$、DIO 1 接至輸入 $B$、DIO 2 接至輸入 $C_{in}$；量測端的部分，將 DIO 3 接至總和輸出 $S$、DIO 4 接至進位輸出 $C_{out}$。
     \end{itemize}
-    \includegraphics[width=0.7\textwidth]{figure/output wave front.png}
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{figure/output wave front.png}
+    \end{center}
+    \begin{center}
+        \begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.2} % 增加行高，讓表格看起來不那麼擁擠
+    \begin{tabular}{|c||c|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{狀態} & \textbf{1st} & \textbf{2nd} & \textbf{3rd} & \textbf{4th} & \textbf{5th} & \textbf{6th} & \textbf{7th} & \textbf{8th} \\ \hline \hline
+        \textbf{A}    & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 \\ \hline
+        \textbf{B}    & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 \\ \hline
+        \textbf{Cin}  & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 1 \\ \hline
+        \textbf{S}    & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 \\ \hline
+        \textbf{Cout} & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 \\ \hline
+        \end{tabular}
+        \caption{1-bit 全加器輸入與輸出之實測真值表}
+        \label{tab:truth_table}
+    \end{table}
+    \end{center}
+    
     \item \textbf{軟體設定 (Scopy)：}
     \begin{itemize}
         \item \textbf{Pattern Generator (訊號產生器)：} 開啟 Scopy 軟體，將 DIO 0、1、2 設定為 Binary Counter 模式，並設定為三個等比頻率（例如 $A$ 設為 4 kHz、$B$ 設為 2 kHz、$C_{in}$ 設為 1 kHz）。此設定可產生所有 8 種 0 與 1 的輸入排列組合。
@@ -151,37 +171,14 @@
 
 \section{問提與討論}
 
-\subsection{請比較AC磁化率跟DC磁化率的差別}
+\subsection{如何使用二進位表示負數?}
+\subsection{如何用數位電路實現乘法、 指數運算?}
+\subsection{進行多位元加法時 (如實驗二)，可能會遇到哪些問題或限制？商
+用電路有什麼優化電路的方式嗎？
+}
 
-AC magnetic susceptibility and DC magnetic susceptibility are two ways to measure how a material responds to an external magnetic field, but they operate under different conditions and reveal different magnetic behaviors:
-
-\begin{itemize}
-    \item Frequency of the Magnetic Field:
-    
-    DC magnetic susceptibility is measured in the presence of a steady, unchanging magnetic field (direct current, or DC field). It reflects the material's magnetic response to a constant magnetic field.
-    
-    AC magnetic susceptibility is measured when an alternating magnetic field (alternating current, or AC field) is applied. The field changes direction periodically, allowing researchers to study the dynamic response of the material over time.
-
-    \item Measurement of Different Magnetic Properties:
-    
-    DC susceptibility measures the equilibrium response of a material, showing how much it is magnetized when exposed to a constant magnetic field. It gives insights into the material’s overall magnetic moment and bulk properties.
-    
-    AC susceptibility gives more information about the dynamic processes in the material, such as the motion of domain walls, relaxation times (Néel or Brownian relaxation in nanoparticles), and other frequency-dependent magnetic behaviors. AC measurements are particularly useful in studying magnetic systems with time-dependent properties.
-
-    \item Applications:
-    
-    DC measurements are simpler and are often used for basic magnetic characterizations, like identifying whether a material is paramagnetic, ferromagnetic, or diamagnetic.
-    
-    AC measurements are more sophisticated and are commonly used in research areas that involve magnetic relaxation (e.g., magnetic nanoparticles), studying the frequency response of materials, and detecting magnetic phase transitions.
-\end{itemize}
-
-In summary, DC magnetic susceptibility is a static measure of how a material reacts to a constant magnetic field, while AC magnetic susceptibility provides insights into the material's response to a time-varying field, offering more detailed information about dynamic magnetic processes.
 
 \section{總結} 
-In this experiment, we measure the susceptibilities of $\rm{Fe_3O_4}$ ferrofluid with different concentration and temperature. Then, we use the susceptibility to derive the concentration of the unknown sample. The concentrations of the unknown sample in different temperature are consistent, approximately \textbf{4.8 mg/ml}. Additionally, we investigate the susceptibility of ink and find its susceptibility is weak. 
-\par In addition, we measured the samples under different frequencies. Though susceptibility data get severely distorted at lower frequency regions, the region over 500 Hz fits relatively well with equation of magnetic particles in fluid. The time constant for iced ferrofluid is way larger than that under room temperature, indicating relaxation happens slower at lower temperatures. Finally, when doing the YIG sample, the curves cannot match the equation of magnetic particles in fluid. This exemplifies that YIG is not isotropic, and its relaxation mechanism is different from ferrofluids.
 
-\bibliographystyle{plain}
-\bibliography{sample}
 
 \end{document} 

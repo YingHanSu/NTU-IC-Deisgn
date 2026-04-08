@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2026.4.8)  8 APR 2026 16:19
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2026.4.8)  8 APR 2026 16:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -980,11 +980,14 @@ File: figure/Member.jpg Graphic file (type bmp)
 ] [1]
 File: figure/output wave front.png Graphic file (type bmp)
 <figure/output wave front.png>
- [2] (main.bbl) [3] (main.aux)
+ [2] [3] (main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2022/08/05>
  ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 
 Package rerunfilecheck Warning: File `main.out' has changed.
@@ -993,15 +996,15 @@ Package rerunfilecheck Warning: File `main.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `main.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  5861408790C3ED1760A1FAD26F7B849C;1670.
+(rerunfilecheck)             After:  30F4948F7572D74D5BEE4441AD905749;2272.
  ) 
 Here is how much of TeX's memory you used:
- 23991 strings out of 409617
- 538175 string characters out of 5773405
- 1942191 words of memory out of 5000000
- 45797 multiletter control sequences out of 15000+600000
+ 24021 strings out of 409617
+ 540228 string characters out of 5773405
+ 1946191 words of memory out of 5000000
+ 45830 multiletter control sequences out of 15000+600000
  562557 words of font info for 71 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 94i,9n,117p,674b,1107s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 94i,9n,117p,410b,1107s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on main.pdf (4 pages).
