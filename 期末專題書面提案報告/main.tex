@@ -1,0 +1,232 @@
+%!TEX program = xelatex
+\documentclass[12pt]{article}
+
+\usepackage[english]{babel}
+\usepackage{xeCJK}
+
+% Set page size and margins
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{xurl}
+
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
+
+\usepackage{adjustbox}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{siunitx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{setspace}
+
+% ----- paragraph -----
+\usepackage{titlesec}
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+% ----- paragraph ----
+
+\setCJKmainfont{NotoSerifTC-Regular}[
+  AutoFakeBold = 3
+]
+\setCJKmonofont{NotoSerifTC-Regular}
+
+\usepackage{indentfirst}
+\setlength\parindent{24pt}
+\setlength{\parskip}{0.35em}
+\setstretch{1.08}
+
+\begin{document}
+
+\begin{titlepage}
+  \begin{center}
+      \vspace*{1cm}
+       \begin{LARGE} 
+           \textbf{
+           \\數位電子學實務
+           }
+       \end{LARGE}
+
+       \begin{LARGE} 
+            \textbf{
+            \\ -- 期中書面提案報告 --
+        }
+        \end{LARGE} 
+
+      \vspace{1cm}
+        \textbf{抬底仔(á)-Tidy UP}
+          
+      \vspace{1.5cm}
+
+      \textbf{Group 2: B11303052 蘇盈翰, B11702091 張容爾, B10901144 王俊皓}
+       
+      \vspace{1.5cm}
+
+      \text{\today}
+
+      \vspace{0.8cm}
+
+      \includegraphics[width=0.7\textwidth]{figure/car.png}
+     
+      \vfill
+          
+      \vspace{0.8cm}
+     
+  \end{center}
+\end{titlepage}
+
+\section{探討之議題 Why}
+
+根據國家衛生研究院高齡醫學暨健康福祉研究中心在《臺灣高齡健康與長照服務年報》之統計，台灣由高齡者組成之家戶數逐年攀升，其中獨居長者家戶亦呈現持續成長（國家衛生研究院高齡醫學暨健康福祉研究中心，n.d.），加上台灣已於 2025 年正式邁入超高齡社會，65 歲以上人口占比突破 20\%，高齡生活的安全議題已不容忽視。在眾多高齡風險中，「跌倒」對長者的威脅尤為顯著，依衛生福利部統計處公布之 107 年國人死因統計結果，跌倒高居 65 歲以上長者事故傷害死亡原因第二位（每十萬人 25.7 人）（衛生福利部統計處，2021）。此外，衛生福利部新聞稿並援引國民健康署 106 年「國民健康訪問調查」指出，65 歲以上長者每 6 人就有 1 人在過去一年內曾經跌倒（15.5\%）（衛生福利部，2019）。
+
+值得注意的是，跌倒的成因與居家環境高度相關。國民健康署指出，長者跌倒危險因子可分為社會人口學因子、身心功能與疾病用藥因子，以及環境因子三大類，其中居家環境之照明不足、地板髒亂、地毯未固定與走道堆放雜物等，皆為常見潛在危害（衛生福利部國民健康署，n.d.）。由此可知，長者跌倒不只是「多發生在家中」，家中環境本身的失序更是致跌的關鍵推手。日常生活中，散落的拖鞋、未收好的電線等小型障礙物看似不起眼，卻經常是絆倒長者的主因。對此，國民健康署提出「規律運動、維持居家環境、用藥安全」三大防跌原則（衛生福利部，2019），而本組的提案將選擇從「維持居家環境」切入，期望能透過排除家中常見的地面風險，降低長者因跌倒而受傷的機率。
+
+\section{執行方法之探討 How}
+為達成「維持居家環境」的目標，讓長者能安全地在家中走動，我們評估了教育宣導、行為監控、居住環境改造等多種可能路徑，最終選擇以「單一自動化拾物裝置」來直接改善居家地面環境，期望能夠以最低的能耗與空間佔用，讓環境能自動維持安全狀態，同時保留長者最大的活動自由。
+
+以下為我們評估過的方案與取捨理由：
+
+\begin{itemize}
+  \setlength{\leftmargin}{2em}
+  \setlength{\itemsep}{0.5em}
+  \item \textbf{教育宣導、改變長者行為：} Pynoos 等人的研究指出，透過環境改造所達到的防跌效果，往往優於僅依賴行為提醒（Pynoos et al., 2010），單純宣導難以長期落實，故效果有限。
+  \item \textbf{影像式跌倒偵測系統：} 此類方法雖能即時發現意外，但相關文獻指出，影像式跌倒偵測的主要挑戰之一即為隱私侵犯，攝影機會捕捉個人外貌、行為與居家環境等敏感資訊，容易引發長者疑慮（Wang et al., 2020）。
+  \item \textbf{建議長者遷居至更安全的居住環境：} 研究顯示，遷入長期照護機構本身為高度心理壓力的生活事件，可能會引發焦慮、憂鬱與適應困難（Polacsek \& Woolford, 2022）。為避免過度衝擊長者心理健康，此方案將不列入考慮。
+  \item \textbf{聘請專業看護：} 此為目前最常見且有效的方案，但受限於照護人力短缺與成本攀升，\textit{TIME} 報導指出，長照費用對家庭造成顯著經濟負擔，故難以作為普遍可行的解法（TIME, 2025）。
+  \item \textbf{較極端觀點 - 以全面健康管理延長壽命：} \textit{Business Insider} 在「The Billionaire Trying to Live Forever」專題中提出以高成本生理監測與生活管理來延壽的案例，但此類方案也是成本極高，缺乏普及可能性（Business Insider, n.d.）。
+  \item \textbf{將易絆倒物品設計為自動歸位裝置：} 如 Nissan 於 2018 年推出的「Self-Parking Slippers」將自動歸位技術嵌入拖鞋本身（Nissan, 2018）。然而此設計易受多種不可控因素影響，如拖鞋翻面、位置偏移、感測誤差等，使得高成本的技術未必能帶來相應的實際效益。
+\end{itemize}
+
+排除上述方案後，我們將焦點放在以「單一工具」解決居家地面的秩序問題，在不增加長者操作負擔的前提下，自動維持地面的安全狀態。
+
+\section{本組的提案 What}
+我們想設計一個「自動撿拾散落物小型機器人」 -- \textbf{抬底仔(á)-Tidy UP}，透過環境類比訊號自主辨識地面遺落物，並使用數位訊號的控制將其拾起並歸位，協助長者維持地面環境秩序與安全。我們的設計架構源自 Cook 與 Das 所提出的智慧環境系統架構（Cook \& Das, 2004），透過「感知、推論、執行」的循環，使環境能主動維持安全條件。
+
+\begin{itemize}
+  \setlength{\leftmargin}{2em}
+  \setlength{\itemsep}{0.5em}
+  \item \textbf{感知：} 結合超音波感測器或人體紅外線感測器，用於測距與避障，即時掌握機器人周遭物體的相對位置，透過影像擷取，應用 YOLO 即時物件偵測模型（Redmon et al., 2016）辨識畫面中的物體屬於目標物（如拖鞋）、障礙物或其他背景。
+  \item \textbf{決策：} 以 Arduino 或 Raspberry Pi 作為主要控制元件，結合感測器與影像辨識模組的訊號，進行路徑規劃、目標定位與動作判斷。
+  \item \textbf{執行：} 包含馬達驅動系統與拾物構造，當機器人抵達目標物旁後，透過鏟子或夾子將拖鞋拾起，並依預設歸位路徑送回指定位置，恢復地面的秩序。
+\end{itemize}
+
+透過此系統，我們希望能在不侵犯長者隱私、不改變長者生活習慣的前提下，降低因小型障礙物而生的絆倒風險，為高齡化社會提供更安全、友善的無障礙地面環境。
+
+\section{所需元件與成本評估 Materials \& Costs}
+
+\subsection{所需元件 Materials}
+\begin{table}[H]
+    \centering
+    \caption{零件清單表}
+    \label{tab:materials}
+    \scriptsize
+    \setlength{\tabcolsep}{3pt}
+    \renewcommand{\arraystretch}{0.95}
+    \begin{tabularx}{\linewidth}{l X X X}
+      \toprule
+      車體功能 & 項目 & 用途 & 選擇 \\
+      \midrule
+      \multirow{3}{*}{感測避障}
+        & HC-SR04 超聲波感測器           & 使用超聲波感測前方障礙物 & \multirow{2}{=}{HC-SR04 與 HC-SR501 擇一使用} \\
+        & HC-SR501 人體紅外線感測器      & 偵測會發出紅外線的物體的移動 & \\
+        & Servo 馬達                   & 使感測器左右旋轉增加範圍 & -- \\
+      \midrule
+      \multirow{3}{*}{通訊來源}
+        & Arduino UNO 主控板              & 為整台拾物車運行的控制來源 & \multirow{3}{=}{Arduino UNO 主控板＋HC-06 藍牙模組 與 Arduino UNO R4 WiFi 擇一使用} \\
+        & HC-06 藍牙模組                  & 與外部無線通訊 & \\
+        & Arduino UNO R4 WiFi            & 結合上述兩者的功能 & \\
+      \midrule
+      \multirow{5}{*}{動力\&車身}
+        & L298N 馬達驅動板                & 控制馬達的方向與速度 & -- \\
+        & DC 馬達                         & 驅動車輪的馬達 & \multirow{4}{=}{DC 馬達＋車輪＋3D 列印底盤 與 現成底盤 擇一使用}   \\
+        & 車輪                            & 使車身移動 & \\
+        & 3D 列印底盤                      & 客製化車身 & \\
+        & 現成底盤\&車輪\&馬達              & 使用現成底版進行客製化 & \\
+      \midrule
+        能量來源 & 18650 鋰電池             & 一顆供電 3.7 V & -- \\
+      \bottomrule
+    \end{tabularx}
+
+  \end{table}
+
+\subsection{成本評估 Costs}
+\begin{table}[H]
+  \centering
+  \caption{成本評估表}
+  \label{tab:costs}
+  \scriptsize
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{0.95}
+  \begin{tabularx}{\linewidth}{l X r c r r}
+    \toprule
+    車體功能 & 項目 & 單價 & 數量 & 目前選擇 & 最便宜選擇\\
+    \midrule
+    \multirow{3}{*}{感測避障}
+      & HC-SR04 超聲波感測器            & 55  & 1 & -- & 55\\
+      & HC-SR501 人體紅外線感測器        & 35  & 4 & 140 & -- \\
+      & Servo 馬達                     & 50  & 1 & 50 & 50 \\
+    \midrule
+    \multirow{3}{*}{通訊來源}
+      & Arduino UNO 主控板             & 370  & 1 & -- & 370\\
+      & HC-06 藍牙模組                 & 155  & 1 & -- & 155\\
+      & Arduino UNO R4 WiFi           & 1{,}200 & 1 & 1{,}200 & --\\
+    \midrule
+    \multirow{5}{*}{動力 \& 車身}
+      & L298N 馬達驅動板                & 40 & 1 & 40 & 40\\
+      & DC 馬達                        & 65 & 4 & -- & --\\
+      & 車輪                           & 20 & 4 & -- & --\\
+      & 3D 列印底盤                     & 約 100 & 1 & -- & --\\
+      & 現成底盤\&車輪\&馬達             & 250 & 1 & 250 & 250\\
+    \midrule
+      能量來源 & 18650 鋰電池            & --  & 2 & 247 & 247\\
+    \midrule
+    \multicolumn{4}{r}{\textbf{預估總計}} & \textbf{1{,}680} & \textbf{920}\\
+    \bottomrule
+  \end{tabularx}
+
+\end{table}
+
+\section{預期成果與分工規劃 When \& Who}
+
+\section{初步成果樣貌}
+
+\section*{參考文獻}
+國家衛生研究院高齡醫學暨健康福祉研究中心。（n.d.）。僅高齡人口居住宅數變化。臺灣高齡健康與長照服務年報。\url{https://ageing.nhri.edu.tw/annual_report/tCSMjW1F27USj12UCMW99}
+
+衛生福利部。（2019 年 9 月 24 日）。每 6 人就有 1 位老人曾跌倒 國健署傳授防跌妙招。\url{https://www.mohw.gov.tw/cp-4253-49428-1.html}
+
+衛生福利部統計處。（2021 年 7 月 2 日）。107 年國人死因統計結果。\url{https://dep.mohw.gov.tw/dos/lp-5069-113-xCat-y107.html}
+
+衛生福利部國民健康署。（n.d.）。老人跌倒常見的危險因子有那些？\url{https://www.hpa.gov.tw/Pages/Detail.aspx?nodeid=807&pid=4327}
+
+Business Insider。（n.d.）。\textit{The Billionaire Trying to Live Forever (Life Extended)}。\url{https://www.youtube.com/watch?v=8W4bLxQAQgQ}
+
+Cook, D. J., \& Das, S. K. (Eds.). (2004). \textit{Smart environments: Technologies, protocols, and applications}. Wiley. \url{https://onlinelibrary.wiley.com/doi/book/10.1002/047168659X}
+
+Nissan. (2018, January 25). \textit{Hotel guests get a kick out of Nissan's self-parking slippers}. \url{https://global.nissannews.com/releases/180125-01-e?lang=en}
+
+Polacsek, M., \& Woolford, M. (2022). Strategies to support older adults' mental health during the transition into residential aged care: A qualitative study of multiple stakeholder perspectives. \textit{BMC Geriatrics, 22}, 186. \url{https://bmcgeriatr.biomedcentral.com/article/10.1186/s12877-022-02859-1}
+
+Pynoos, J., Steinman, B. A., \& Nguyen, A. Q. D. (2010). Environmental assessment and modification as fall-prevention strategies for older adults. \textit{Clinics in Geriatric Medicine, 26}(4), 633--644. \url{https://pubmed.ncbi.nlm.nih.gov/20934614/}
+
+TIME. (2025, July 23). \textit{Why so many seniors can't afford long-term care}. \url{https://time.com/7304510/seniors-long-term-care-costs/}
+
+Wang, X., Ellul, J., \& Azzopardi, G. (2020). Elderly fall detection systems: A literature survey. \textit{Frontiers in Robotics and AI, 7}, 71. \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC7805655/}
+
+Bardaro, G., Antonini, A., \& Motta, E. (2022). Robots for elderly care in the home: A landscape analysis and co-design toolkit. \textit{International Journal of Social Robotics, 14}(3), 657--681. \url{https://link.springer.com/article/10.1007/s12369-021-00816-3}
+
+Kumar, A., et al. (2021). \textit{Autonomous bot with ML-based reactive navigation for indoor environment}. arXiv. \url{https://arxiv.org/pdf/2111.12542}
+
+Redmon, J., Divvala, S., Girshick, R., \& Farhadi, A. (2016). You only look once: Unified, real-time object detection. In \textit{Proceedings of the IEEE conference on computer vision and pattern recognition} (pp. 779--788). \url{https://arxiv.org/abs/1506.02640}
+
+\end{document}
