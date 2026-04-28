@@ -186,48 +186,24 @@
 
 \section{問題討論}
 
-\subsection{如何用二進位表示負數？}
-表示法除了得顯示數字絕對值大小，還得有顯示數字正負的公用。例如，6 在二進位為 0110，若要表示 -6，第一思路是令 $\mathrm{(6)+(-6)=0}$。計算：
-\[ \mathrm{(0110)+(1010)=(0000)} \]
-但 1010 直接看是 +10。為了解決此問題，我們增加一個 \textbf{signed bit} (0 代表 +，1 代表 -)。一個 5-bit signed binary number 能表達 -16 到 +15。給定二進位正數 $\mathrm{A}$，其負數為 $\mathrm{(-A) = \text{NOT}(A) + 1}$。例如 $\mathrm{B = (0101110)}$，則 $\text{NOT}(\mathrm{B}) = \mathrm{1010001}$，故 $\mathrm{-B = 1010010}$。這即是 \textbf{2’s complement} 的概念。
 
-\subsection{如何用數位電路實現乘法、指數運算？}
-\begin{itemize}
-\item \textbf{乘法運算：} 基本單位是加法，使用 \textbf{shift and add} 的方法。設計方向包含 Array Multiplier（優化運算時間）、Sequential Multiplier（利用移位暫存器省面積）以及 Booth Multiplier（演算法層面優化）。
-\item \textbf{舉例：} 數位電路實現乘法，一開始我們會想像會做很多加法，畢竟乘法就是加法器的兒子。我們舉例去思考，$13 \times 11 = 143$，思考一個 4bit $\times$ 4bit Multiplier 如何設計？
-$13 = (1101)$， $11 = (1011)$，以下為小學乘法器做法。若要節省加法器使用面積，可以用移位暫存器的方法，儲存加法進度，利用多個 cycle 把加法裡的從 LSB 到 MSB 一個個加完，如右下圖，省了很多面積/資源重複使用。也可以放很多加法器 array，會用很多加法器，但運算 1 個 cycle 就做完。
-最後要提，現有乘法器 adder 因為要加很多 bit 數，從 LSB 加到 MSB 會有很長的 Ripple Add propagation path 導致 gate delay 很大，電路運算慢。所以我們會用 CLA (Carry Look Ahead) 的邏輯優化我們的加法器，讓他們跑得更快更有效率，利用了一點平行化的概念在裡面，平行化在乘法器設計裡扮演很重要角色。
-\begin{figure}[H]
-  \centering
-  % 第一張圖
-  \begin{subfigure}[b]{0.45\textwidth}
-      \centering
-      \includegraphics[width=0.8\textwidth]{figure/乘法器.drawio.png}
-      \caption{原始乘法器架構}
-      \label{fig:mul1}
-  \end{subfigure}
-  \hfill % 在兩張圖之間加入彈性間距，把圖片推向兩側
-  % 第二張圖
-  \begin{subfigure}[b]{0.45\textwidth}
-      \centering
-      \includegraphics[width=0.8\textwidth]{figure/乘法器改.drawio.png}
-      \caption{優化後的乘法器架構}
-      \label{fig:mul2}
-  \end{subfigure}
-   \caption{乘法器設計之對比與優化分析}
-  \label{fig:comparison}
-\end{figure}
-\item \textbf{指數運算 ($\mathrm{X^Y}$)：} 基本單位是乘法，使用 \textbf{square and multiply} 方法。將 $\mathrm{Y}$ 做二進位處理（如 $7^{19}$，將 19 轉為 $10011_2$），運算時間可從 $\mathrm{O(N)}$ 降至  $\mathrm{O(\log N)}$。此外，\textbf{CORDIC} 演算法利用歐拉公式知識，僅需加法器與暫存器配合 lookup tables 存雙曲函數值即可估計指數值。
-\end{itemize}
+\subsection{為什麼 LED 矩陣的腳位會這麼亂，有什麼好處嗎？}
+站在設計者角度的話，會根據配合驅動IC的腳位，進而去設定8*8的LED陣列腳位，就好像dynamic duo一樣，產品一套賣出，對買者有良好的使用一致性體驗，賣家和設計者也能藉此商機多賺一筆。而LED陣列有一個最主要的配合驅動IC，就是MAX7219。要問LED陣列為什麼這麼亂，就得追本溯源，問MAX7219的腳位為何？
+查詢後，果然MAX7219 腳位看起來亂，是因為它不是照「數字順序」排，而是照「電流、晶片內部 layout、封裝腳位、七段顯示器/LED matrix 走線」排。
+而你若細看MAX7219，他有DIG和SEG兩種port，DIG選擇8個column中哪些要亮，SEG選擇每個colunm中，哪幾顆LED要亮。
+了解此，進而去細究DIG的腳位配置，觀察sequence{04623751}的規律，這是個Gray code like sequence，若要用Gray code去理解IC腳位設計的話，Gray code cube使得腳位間的電訊號更好地利用SIPO這特點。這使得。而Gray code有一個最主要的encode特徵，相鄰兩點只差一個bit variance。舉例來說，在Gray code Cube上，{000}的鄰居有，{001},{010},{100}，也就是說腳位1的鄰居是腳位1,2,4。這種設計，優化了decoder/driver layout設計。
+接下來要了解的SEG腳位設計，這種設計是為了迎合七段顯示器的的掃描順序，AFBGCED，這樣的腳位安排能將此IC更好地融合到七段顯示器上。
 
-\subsection{商用電路有什麼優化電路的方式嗎？}
-\begin{itemize}
-\item \textbf{優化速度：} 專注於優化 \textbf{Carry Lookahead} 邏輯以減少門延遲 (gate delay)，並利用 \textbf{pipeline} 與 flip-flops 分割流程，提升運算效率。
-\item \textbf{優化面積與功耗：} 使用 \textbf{clock gating} 關閉閒置電路，並透過 \textbf{電路資源共享} 減少面積（例如不同時進行的 A+B 與 C+D 共用一個加法器）。
-\item \textbf{EDA 輔助：} 利用自動化工具優化 clock tree、繞線佈局與熱平衡。優化目標取決於產品：電梯電路專注省電，電競電腦專注速度。
-\end{itemize}
 
-\subsection{為什麼不能用類比元件做加法就好？}
-數位電路的優點在於訊號儲存穩定且同步，具有明確的 \textbf{Noise Margin}。類比元件（如電容）會漏電，且易受溫度影響產生雜訊，導致誤差率高。類比加法僅適用於低功耗、能容忍高誤差且需即時反應的場景（如 In-memory computing 或 RF audio analyzer）。
+\subsection{電視或電腦等更多像素的螢幕是怎麼控制的，與今天電路的相似與相異之處？}
+電視或電腦螢幕雖然像素數量比今天的 LED 矩陣多非常多，但基本概念其實相似：它們都是把畫面切成一個二維矩陣，用「列」和「行」的方式來控制每個像素的位置。今天的 LED 矩陣是利用 row 和 column 交會的位置來點亮 LED，例如先選擇某一列，再決定這一列中的哪些欄要亮；電視和電腦螢幕也是依照類似的掃描概念，一列一列地更新畫面。
+以電腦螢幕為例，GPU 會先在記憶體中產生一張完整的畫面，這張畫面叫做 framebuffer，裡面記錄了每個像素的顏色資訊，例如紅、綠、藍三個數值。接著，GPU 會透過 HDMI、DisplayPort 或筆電內部的 eDP，把這些影像資料高速傳送到螢幕。螢幕內部的 timing controller，簡稱 TCON，會接收這些資料，並控制面板內部的 row driver 和 column driver，把資料送到正確的位置。
+如果是 LCD 螢幕，每個像素本身不會發光，而是透過液晶控制背光能不能通過。LCD 面板中每個像素旁邊都有一個很小的 TFT 電晶體，可以把它想成一個微小開關。螢幕會先選擇某一列，打開那一列所有像素的 TFT，然後 column driver 把每個像素需要的電壓送進去。這個電壓會暫存在像素旁邊的小電容中，讓液晶在下一次更新前維持同樣的透光程度。也就是說，LCD 的掃描不是「掃到才亮」，而是「掃到時寫入資料，之後像素自己保持狀態」。
+如果是 OLED 或 AMOLED 螢幕，每個像素本身會發光，所以它更像是超大型、超精密的 LED 矩陣。不過它也不是用簡單的被動掃描方式，因為螢幕像素太多，如果每一列只在掃描到時才亮，亮度會太低、瞬間電流會太大。因此 OLED 螢幕通常也使用 active matrix 結構，每個像素附近都有 TFT 和儲存電容，用來記住亮度資料，並在一整個 frame 期間持續控制 OLED 發光。
+這和今天的 LED 矩陣電路有幾個相似處。第一，它們都是矩陣結構，都可以用 row 和 column 來定位像素。第二，它們都使用掃描概念，不是每個像素都獨立拉一條控制線，而是透過一列一列或一行一行的方式更新畫面。第三，它們都需要 driver IC 幫忙控制大量輸出腳位，像今天用 MAX7219 控制 8×8 LED 矩陣，而大螢幕則使用更複雜的 TCON、source driver 和 gate driver。
+但兩者也有很大的不同。今天的 LED 矩陣比較接近被動矩陣控制，LED 通常只有亮或不亮，控制方式比較單純；而電視和電腦螢幕的像素數量可能有幾百萬甚至上千萬個，每個像素還要
+顯示不同亮度與顏色，所以需要更複雜的灰階控制、電壓控制或電流控制。LED 矩陣通常是掃到某一列時才讓那一列發光，而現代 LCD、OLED 螢幕多半是主動矩陣，掃描時只是把資料寫進像素，之後像素會靠 TFT 和電容維持狀態。
+因此，可以說今天的 LED 矩陣是現代螢幕控制原理的簡化模型。兩者共同的核心都是「矩陣、掃描、driver IC、row/column 控制」；不同的是，電視和電腦螢幕因為像素數量巨大、需要彩色與灰階顯示，所以加入了 GPU、framebuffer、高速影像傳輸、TCON、TFT、儲存電容和類比驅動電路。簡單來說，今天的電路是在直接掃描點亮 LED；現代螢幕則是先由 GPU 產生畫面資料，再由螢幕內部電路把資料逐列寫入每個像素，讓整個畫面穩定顯示出來。
+
 
 \end{document}
