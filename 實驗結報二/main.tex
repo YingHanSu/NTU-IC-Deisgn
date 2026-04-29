@@ -260,6 +260,35 @@
 
 \section{實驗結果與分析}
 
+\subsection{時域多工與視覺暫留驗證}
+在本實驗中，我們成功利用兩顆 74HC595 移位暫存器級聯，將 ESP32 的 3 個 GPIO 腳位擴展至可控制 $8 \times 8$ LED 矩陣。實驗結果顯示：
+\begin{itemize}
+    \item \textbf{低頻掃描階段}：當可變電阻調整至高阻值時，輸入 ESP32 的電壓經 ADC 轉換後設定較長的延時，此時可清晰觀察到 LED 矩陣以「列」為單位，由上而下逐列亮起。這證實了時域多工 (TDM) 的運作機制，即任何瞬間僅有一列陰極被拉低 (Low Level)。
+    \item \textbf{高頻顯示階段}：隨著可變電阻旋轉降低阻值，掃描頻率提升。當刷新頻率超過約 \SI{60}{Hz} 時，由於人眼視覺暫留效應，逐列掃描的閃爍感消失，轉化為穩定的全亮畫面或靜態圖案。
+\end{itemize}
+
+\subsection{Emoji Pong 遊戲邏輯與動態顯示}
+在實驗二的動畫顯示部分，我們成功實作了互動式遊戲。分析如下：
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{pong_v3.png}
+    \caption{最終版 Emoji Pong 於 $8 \times 8$ 矩陣之顯示效果}
+    \label{fig:analysis_pong}
+\end{figure}
+
+\begin{enumerate}
+    \item \textbf{映射精準度}：透過將可變電阻的類比訊號映射 (Mapping) 至 0--5 的區間（考慮到反彈板長度為 3 像素），玩家能平滑地控制畫面底部的擋板，反應延遲極低，顯示移位暫存器在高頻運作下的資料傳輸效率足以支撐即時互動。
+    \item \textbf{難度曲線分析}：最終版程式加入每 30 秒線性提升小球移動速度的邏輯。實驗發現，當小球速度過快時，受限於 $8 \times 8$ 的解析度，小球的軌跡會出現明顯的跳躍感（非連續移動），這說明了低解析度顯示器在呈現高速動態物體時的物理限制。
+    \item \textbf{得分跑馬燈}：透過切換不同的 \texttt{image[]} 陣列並結合位移邏輯，我們成功在有限的空間內顯示兩位數以上的得分，達成資訊傳達的功能。
+\end{enumerate}
+
+\subsection{誤差與除錯分析}
+針對實驗過程中出現的異常現象進行探討：
+\begin{itemize}
+    \item \textbf{接地接觸不良}：第一週出現的恆亮現象，經分析是因為接地線未完全導通，導致電流尋找其他路徑或使電位浮動，造成掃描邏輯失效。
+    \item \textbf{可變電阻極值異常}：觀察到在電阻最小端刷新率反而變慢，推測是因為 ADC 讀取值在極值附近因雜訊波動，觸發了程式碼中預設的保護機制或溢位（Overflow），導致延時函數 (\texttt{delay}) 的參數異常。
+\end{itemize}
+
 \section{問題討論}
 
 
